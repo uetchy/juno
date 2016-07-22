@@ -7,6 +7,8 @@ Jupyter Notebook stays on macOS menubar.
 
 ## Download
 
+[![Join the chat at https://gitter.im/uetchy/juno](https://badges.gitter.im/uetchy/juno.svg)](https://gitter.im/uetchy/juno?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 See [releases](https://github.com/uetchy/juno/releases) and download the app.
 
 ### Supported platforms
