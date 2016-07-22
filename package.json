@@ -11,7 +11,7 @@
   "scripts": {
     "test": "xo",
     "start": "electron .",
-    "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --platform=darwin --arch=x64 --version=$npm_package_electronVersion --app-version=$npm_package_version --icon=./app.icns --overwrite"
+    "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --platform=darwin --arch=x64 --version=$npm_package_electronVersion --app-version=$npm_package_version --icon=./assets/app.icns --overwrite"
   },
   "dependencies": {
     "extend": "^3.0.0",

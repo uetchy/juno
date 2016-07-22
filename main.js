@@ -61,7 +61,7 @@ app.on('ready', () => {
 
 	const {jupyter_command, jupyter_port, open_browser_on_startup} = globalConfig
 
-	tray = new Tray(`${__dirname}/tray@2x.png`)
+	tray = new Tray(`${__dirname}/assets/tray@2x.png`)
   const contextMenu = Menu.buildFromTemplate([
   	{label: 'Running on localhost:' + jupyter_port, enabled: false},
   	{label: 'Open Jupyter Notebook', click: () => {
