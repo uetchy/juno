@@ -2,7 +2,7 @@
 
 [![GitHub release](https://img.shields.io/github/release/uetchy/juno.svg?maxAge=2592000)](https://github.com/uetchy/juno/releases/latest) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/uetchy/juno/master/LICENSE) [![GitHub stars](https://img.shields.io/github/stars/uetchy/juno.svg)](https://github.com/uetchy/juno/stargazers) [![GitHub issues](https://img.shields.io/github/issues/uetchy/juno.svg)](https://github.com/uetchy/juno/issues) [![Join the chat at https://gitter.im/uetchy/juno](https://badges.gitter.im/uetchy/juno.svg)](https://gitter.im/uetchy/juno?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Twitter](https://img.shields.io/twitter/url/http/github.com/uetchy/juno.svg?style=social)](https://twitter.com/intent/tweet?text=uetchy/juno – Jupyter Notebook stays on macOS menubar.&url=https://github.com/uetchy/juno)
 
-Jupyter Notebook stays on macOS menubar.
+Jupyter Notebook stays on macOS menubar. Powered by Electron.
 
 ![](http://randompaper.co.s3.amazonaws.com/juno/screenshot.png)
 
@@ -14,10 +14,19 @@ See [releases](https://github.com/uetchy/juno/releases) and download the app.
 
 - macOS
 
-## Technology
+## Requirements
 
-- NodeJS
-- Electron
+- Jupyter Notebook
+
+### How to install Jupyter Notebbok
+
+```
+$ brew install pyenv
+$ pyenv install miniconda3-latest
+$ pyenv global miniconda3-latest
+$ conda install jupyter
+$ jupyter notebook
+```
 
 ## Config
 
