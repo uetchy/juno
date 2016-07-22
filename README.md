@@ -8,6 +8,15 @@ Jupyter Notebook stays on macOS menubar.
 
 See [releases](https://github.com/uetchy/juno/releases) and download the app.
 
+### Supported platforms
+
+- macOS
+
+## Technology
+
+- NodeJS
+- Electron
+
 ## Bugs
 
 Feel free to [report issues](https://github.com/uetchy/juno/issues/new) you find with Juno.
