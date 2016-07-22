@@ -12,6 +12,11 @@ See [releases](https://github.com/uetchy/juno/releases) and download the app.
 
 Feel free to [report issues](https://github.com/uetchy/juno/issues/new) you find with Juno.
 
+## Upcoming
+
+- [ ] Add test
+- [ ] Auto update
+
 ## Dev
 
 ```
