@@ -1,4 +1,5 @@
-# :rocket: Juno
+![Juno](http://randompaper.co.s3.amazonaws.com/juno/header.png)
+[![GitHub release](https://img.shields.io/github/release/uetchy/juno.svg?maxAge=2592000)]()[![license](https://img.shields.io/github/license/uetchy/juno.svg?maxAge=2592000)]()[![Gitter](https://img.shields.io/gitter/room/uetchy/juno.svg?maxAge=2592000)]()[![Twitter URL](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&maxAge=2592000)]()
 
 Jupyter Notebook stays on macOS menubar.
 
