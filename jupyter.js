@@ -27,7 +27,18 @@ function launchJupyter(jupyterPath, targetPath, port) {
 	return jupyter.pid
 }
 
-function openJupyterNotebook(notebooks, jupyterPath, port) {
+function openBrowser(notebooks=[], port='8888') {
+	if (notebooks.length == 0) {
+		exec(`open http://localhost:${port}/tree`)
+	} else {
+		notebooks.forEach((notebook) => {
+			const target = relative(homedir(), notebook)
+			exec(`open http://localhost:${port}/notebooks/${target}`)
+		})
+	}
+}
+
+function openJupyterNotebook(jupyterPath, port) {
 	// Fetch existing process
 	let pid = processListening(port)
 
@@ -40,18 +51,10 @@ function openJupyterNotebook(notebooks, jupyterPath, port) {
 		pid = processListening(port)
 	}
 
-	// Open browser
-	console.log('PID fetched')
-	if (notebooks.length == 0) {
-		exec(`open http://localhost:${port}/tree`)
-	} else {
-		notebooks.forEach((notebook) => {
-			const target = relative(homedir(), notebook)
-			exec(`open http://localhost:${port}/notebooks/${target}`)
-		})
-	}
-
 	return pid
 }
 
-module.exports.openJupyterNotebook = openJupyterNotebook
+module.exports = {
+	openBrowser: openBrowser,
+	openJupyterNotebook: openJupyterNotebook
+}
