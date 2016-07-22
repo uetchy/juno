@@ -1,7 +1,7 @@
 {
   "name": "juno",
   "productName": "Juno",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Jupyter Notebook stays on macOS menubar.",
   "main": "main.js",
@@ -11,7 +11,7 @@
   "scripts": {
     "test": "xo",
     "start": "electron .",
-    "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --platform=darwin --arch=x64 --version=$npm_package_electronVersion --icon=./app.icns --overwrite"
+    "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --platform=darwin --arch=x64 --version=$npm_package_electronVersion --app-version=$npm_package_version --icon=./app.icns --overwrite"
   },
   "dependencies": {
     "yargs": "^4.8.1"
