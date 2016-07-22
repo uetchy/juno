@@ -2,6 +2,8 @@
 
 Jupyter Notebook stays on macOS menubar.
 
+![](http://randompaper.co.s3.amazonaws.com/juno/screenshot.png)
+
 ## Dev
 
 ```
