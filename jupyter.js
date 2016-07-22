@@ -4,10 +4,6 @@ const {execSync, exec, spawn} = require('child_process')
 const {homedir} = require('os')
 const {resolve, relative} = require('path')
 
-const JUPYTER_PATH = resolve(homedir(), '.pyenv', 'shims', 'jupyter-notebook')
-const port = process.env.JUPYTER_PORT || 8888
-const ipynbs = process.argv.slice(2)
-
 function processListening(port) {
 	let pid
 	try {
@@ -27,7 +23,7 @@ function launchJupyter(jupyterPath, targetPath, port) {
 	return jupyter.pid
 }
 
-function openBrowser(notebooks=[], port='8888') {
+function openBrowser(notebooks, port) {
 	if (notebooks.length == 0) {
 		exec(`open http://localhost:${port}/tree`)
 	} else {

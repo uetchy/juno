@@ -2,20 +2,35 @@ const electron = require('electron')
 const {app, Menu, Tray, crashReporter} = electron
 const {homedir} = require('os')
 const {resolve, relative} = require('path')
+const {exec} = require('child_process')
+const fs = require('fs')
+const extend = require('extend')
 const yargs = require('yargs').argv
 const jupyter = require('./jupyter')
 
-const JUPYTER_PATH = resolve(homedir(), '.pyenv', 'shims', 'jupyter-notebook')
-const port = process.env.JUPYTER_PORT || 8888
+const userConfigPath = resolve(homedir(), '.junorc')
+const defaultConfig = {
+	jupyter_command: resolve(homedir(), '.pyenv', 'shims', 'jupyter-notebook'),
+	jupyter_port: 8888,
+	open_browser_on_startup: true
+}
+var globalConfig
+try {
+	let userConfig = require(userConfigPath)
+	globalConfig = extend(defaultConfig, userConfig)
+} catch(err) {
+	fs.writeFileSync(userConfigPath, JSON.stringify(defaultConfig, null, '  '), 'utf-8')
+	globalConfig = defaultConfig
+}
 
 let tray = null
 let mainWindow = null
 let jupyterPID = null
 let notebooksToOpen = []
 
-let shouldQuit = app.makeSingleInstance((argv, workingDirectory) => {
+const shouldQuit = app.makeSingleInstance((argv, workingDirectory) => {
 	const notebooks = argv.slice(2)
-	jupyter.openBrowser(notebooks, port)
+	jupyter.openBrowser(notebooks, globalConfig.jupyter_port)
 })
 
 if (shouldQuit) {
@@ -23,10 +38,14 @@ if (shouldQuit) {
   return
 }
 
+function openBrowser(notebooks) {
+	jupyter.openBrowser(notebooks, globalConfig.jupyter_port)
+}
+
 app.on('open-file', (event, path) => {
 	event.preventDefault()
 	if (jupyterPID) {
-		jupyter.openBrowser([path], port)
+		openBrowser([path])
 	} else {
 		notebooksToOpen.push(path)
 	}
@@ -40,10 +59,18 @@ app.on('before-quit', () => {
 app.on('ready', () => {
 	if (app.dock) app.dock.hide()
 
+	const {jupyter_command, jupyter_port, open_browser_on_startup} = globalConfig
+
 	tray = new Tray(`${__dirname}/tray@2x.png`)
   const contextMenu = Menu.buildFromTemplate([
-  	{label: 'Jupyter is running on http://localhost:' + port, enabled: false},
-    {label: 'Quit', role: 'quit'}
+  	{label: 'Running on localhost:' + jupyter_port, enabled: false},
+  	{label: 'Open Jupyter Notebook', click: () => {
+  		openBrowser([])
+  	}},
+  	{label: 'Preferences...', accelerator: 'Command+,', click: () => {
+  		exec(`open ${userConfigPath}`)
+  	}},
+    {label: 'Quit Juno', role: 'quit', accelerator: 'Command+Q'}
   ])
   tray.setToolTip('Juno is enabled')
   tray.setContextMenu(contextMenu)
@@ -51,7 +78,11 @@ app.on('ready', () => {
   const notebooks = notebooksToOpen.concat(yargs._)
   notebooksToOpen = []
 
-  jupyterPID = jupyter.openJupyterNotebook(JUPYTER_PATH, port)
-  jupyter.openBrowser(notebooks, port)
+  jupyterPID = jupyter.openJupyterNotebook(jupyter_command, jupyter_port)
+  if (notebooks){
+  	openBrowser(notebooks)
+  } else if (open_browser_on_startup) {
+  	openBrowser([])
+  }
   console.log('jupyterPID:', jupyterPID)
 })
