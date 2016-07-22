@@ -8,7 +8,7 @@ const extend = require('extend')
 const yargs = require('yargs').argv
 const jupyter = require('./jupyter')
 
-const userConfigPath = resolve(homedir(), '.junorc')
+const userConfigPath = resolve(homedir(), '.junorc.json')
 const defaultConfig = {
 	jupyter_command: resolve(homedir(), '.pyenv', 'shims', 'jupyter-notebook'),
 	jupyter_port: 8888,

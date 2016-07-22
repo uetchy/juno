@@ -17,6 +17,19 @@ See [releases](https://github.com/uetchy/juno/releases) and download the app.
 - NodeJS
 - Electron
 
+## Config
+
+Juno config is located on `~/.junorc.json`.
+
+default parameters are here:
+```json
+{
+  "jupyter_command": "~/.pyenv/shims/jupyter-notebook",
+  "jupyter_port": 8888,
+  "open_browser_on_startup": true
+}
+```
+
 ## Bugs
 
 Feel free to [report issues](https://github.com/uetchy/juno/issues/new) you find with Juno.
