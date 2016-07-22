@@ -79,7 +79,7 @@ app.on('ready', () => {
   notebooksToOpen = []
 
   jupyterPID = jupyter.openJupyterNotebook(jupyter_command, jupyter_port)
-  if (notebooks){
+  if (notebooks.length > 0){
   	openBrowser(notebooks)
   } else if (open_browser_on_startup) {
   	openBrowser([])
