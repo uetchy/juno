@@ -1,7 +1,6 @@
-# thebe
+# :rocket: Juno
 
-Menubar app for Jupyter Notebook.
-
+Jupyter Notebook stays on macOS menubar.
 
 ## Dev
 

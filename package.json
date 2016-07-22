@@ -2,22 +2,22 @@
   "name": "juno",
   "productName": "Juno",
   "version": "0.1.0",
-  "description": "Menubar app for Jupyter Notebook.",
+  "private": true,
+  "description": "Jupyter Notebook stays on macOS menubar.",
   "main": "main.js",
   "license": "MIT",
   "repository": "uetchy/juno",
-  "electronVersion": "0.36.0",
+  "electronVersion": "1.2.8",
   "scripts": {
     "test": "xo",
     "start": "electron .",
     "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --all --version=$npm_package_electronVersion"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
-    "electron-packager": "^5.0.0",
-    "electron-prebuilt": "^0.36.0",
-    "xo": "^0.12.0"
+    "electron-packager": "^7.3.0",
+    "electron-prebuilt": "^1.2.8",
+    "xo": "^0.16.0"
   },
   "xo": {
     "esnext": true,
