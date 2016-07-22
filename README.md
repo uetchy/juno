@@ -37,7 +37,9 @@ Feel free to [report issues](https://github.com/uetchy/juno/issues/new) you find
 
 ## Upcoming
 
-- [ ] Add test
+- [ ] Launch Juno in specified directory
+- [ ] Terminal integration
+- [ ] Test suite
 - [ ] Auto update
 
 ## Dev
