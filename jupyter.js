@@ -6,7 +6,7 @@ const {relative} = require('path');
 function processListening(port) {
 	let pid;
 	try {
-		pid = execSync(`sleep 0.5 && lsof -ti :${port}`);
+		pid = execSync(`sleep 0.5 && lsof -ti TCP:${port} -s TCP:LISTEN`);
 	} catch (err) {
 		return null;
 	}
@@ -40,7 +40,7 @@ function getJupyterProcess(jupyterPath, port) {
 
 	// Launch Jupyter if not existed
 	if (!pid) {
-		pid = launchJupyter(jupyterPath, homedir(), port);
+		launchJupyter(jupyterPath, homedir(), port);
 		console.log('Started');
 	}
 	while (!pid) {
