@@ -4,7 +4,7 @@
   "version": "0.2.0",
   "private": true,
   "description": "Jupyter Notebook stays on macOS menubar.",
-  "main": "main.js",
+  "main": ".",
   "license": "MIT",
   "repository": "uetchy/juno",
   "electronVersion": "1.2.8",
@@ -30,8 +30,7 @@
     "esnext": true,
     "envs": [
       "node",
-      "browser",
-      "electron"
+      "browser"
     ]
   }
 }

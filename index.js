@@ -2,9 +2,9 @@ const {homedir} = require('os');
 const {resolve} = require('path');
 const {exec} = require('child_process');
 const fs = require('fs');
-const {app, Menu, Tray} = require('electron'); // eslint-disable-line import/no-extraneous-dependencies
 const extend = require('extend');
 const {argv} = require('yargs');
+const {app, Menu, Tray} = require('electron'); // eslint-disable-line import/no-extraneous-dependencies
 
 // Our modules
 const jupyter = require('./jupyter');
@@ -59,7 +59,6 @@ app.on('open-file', (event, path) => {
 
 // Kill jupyter daemon when quitting
 app.on('before-quit', () => {
-	console.log('Kill jupyter', jupyterPID);
 	process.kill(jupyterPID, 'SIGHUP');
 });
 
