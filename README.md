@@ -25,9 +25,9 @@ Juno config is located on `~/.junorc.json`.
 default parameters are here:
 ```json
 {
-  "jupyter_command": "~/.pyenv/shims/jupyter-notebook",
-  "jupyter_port": 8888,
-  "open_browser_on_startup": true
+  "jupyterCommand": "~/.pyenv/shims/jupyter-notebook",
+  "jupyterPort": 8888,
+  "openBrowserOnStartup": true
 }
 ```
 
