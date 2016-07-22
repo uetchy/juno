@@ -47,9 +47,18 @@ $ npm install
 $ npm start
 ```
 
-### Build
+### Test & Build
+
+Just run:
 
 ```
+$ npm run release
+```
+
+or:
+
+```
+$ npm test
 $ npm run build
 ```
 

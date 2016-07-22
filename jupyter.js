@@ -1,56 +1,56 @@
-#!/usr/bin/env node
+const {execSync, exec, spawn} = require('child_process');
+const {homedir} = require('os');
+const {relative} = require('path');
 
-const {execSync, exec, spawn} = require('child_process')
-const {homedir} = require('os')
-const {resolve, relative} = require('path')
-
+// Return a process pid which is listening specific port
 function processListening(port) {
-	let pid
+	let pid;
 	try {
-		pid = execSync(`sleep 0.5 && lsof -ti :${port}`)
-	} catch(err) {
-		return null
+		pid = execSync(`sleep 0.5 && lsof -ti :${port}`);
+	} catch (err) {
+		return null;
 	}
-	return String(pid)
+	return String(pid);
 }
 
+// Launch jupyter daemon and returns pid
 function launchJupyter(jupyterPath, targetPath, port) {
-	console.log("Launching Jupyter ...")
-	const options = [targetPath, `--port=${port}`, '--no-browser']
-	const jupyter = spawn(jupyterPath, options, { detached: true })
-	// jupyter.stderr.on('data', onLog)
-	// jupyter.on('close', onExited)
-	return jupyter.pid
+	console.log('Launching Jupyter ...');
+	const options = [targetPath, `--port=${port}`, '--no-browser'];
+	const jupyter = spawn(jupyterPath, options, {detached: true});
+	return jupyter.pid;
 }
 
+// Open browser and show notebooks
 function openBrowser(notebooks, port) {
-	if (notebooks.length == 0) {
-		exec(`open http://localhost:${port}/tree`)
+	if (notebooks.length === 0) {
+		exec(`open http://localhost:${port}/tree`);
 	} else {
-		notebooks.forEach((notebook) => {
-			const target = relative(homedir(), notebook)
-			exec(`open http://localhost:${port}/notebooks/${target}`)
-		})
+		notebooks.forEach(notebook => {
+			const target = relative(homedir(), notebook);
+			exec(`open http://localhost:${port}/notebooks/${target}`);
+		});
 	}
 }
 
-function openJupyterNotebook(jupyterPath, port) {
+// Fetch or launch jupyter and returns their PID
+function getJupyterProcess(jupyterPath, port) {
 	// Fetch existing process
-	let pid = processListening(port)
+	let pid = processListening(port);
 
 	// Launch Jupyter if not existed
 	if (!pid) {
-		let pid = launchJupyter(jupyterPath, homedir(), port)
-		console.log('Started')
+		pid = launchJupyter(jupyterPath, homedir(), port);
+		console.log('Started');
 	}
-	while(!pid) {
-		pid = processListening(port)
+	while (!pid) {
+		pid = processListening(port);
 	}
 
-	return pid
+	return pid;
 }
 
 module.exports = {
-	openBrowser: openBrowser,
-	openJupyterNotebook: openJupyterNotebook
-}
+	openBrowser,
+	getJupyterProcess
+};

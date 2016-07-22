@@ -11,7 +11,9 @@
   "scripts": {
     "test": "xo",
     "start": "electron .",
-    "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --platform=darwin --arch=x64 --version=$npm_package_electronVersion --app-version=$npm_package_version --icon=./assets/app.icns --overwrite"
+    "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --platform=darwin --arch=x64 --version=$npm_package_electronVersion --app-version=$npm_package_version --icon=./assets/app.icns --overwrite",
+    "postbuild": "node scripts/post-build-mac.js",
+    "release": "npm-run-all test build"
   },
   "dependencies": {
     "extend": "^3.0.0",
@@ -20,13 +22,16 @@
   "devDependencies": {
     "electron-packager": "^7.3.0",
     "electron-prebuilt": "^1.2.8",
+    "npm-run-all": "^2.3.0",
+    "plist": "^1.2.0",
     "xo": "^0.16.0"
   },
   "xo": {
     "esnext": true,
     "envs": [
       "node",
-      "browser"
+      "browser",
+      "electron"
     ]
   }
 }
