@@ -4,7 +4,7 @@ const {exec} = require('child_process');
 const fs = require('fs');
 const extend = require('extend');
 const {argv} = require('yargs');
-const {app, Menu, Tray} = require('electron'); // eslint-disable-line import/no-extraneous-dependencies
+const {app, dialog, Menu, Tray} = require('electron'); // eslint-disable-line import/no-extraneous-dependencies
 
 // Our modules
 const jupyter = require('./jupyter');
@@ -69,19 +69,37 @@ app.on('ready', () => {
 		app.dock.hide();
 	}
 
-	// settings from global config
-	const {jupyterCommand, jupyterPort, openBrowserOnStartup} = globalConfig;
-
 	// Setup macOS tray menu
 	tray = new Tray(`${__dirname}/assets/tray@2x.png`);
 	const contextMenu = Menu.buildFromTemplate([
-		{label: 'Running on localhost:' + jupyterPort, enabled: false},
+		{label: 'Running on localhost:' + globalConfig.jupyterPort, enabled: false},
 		{label: 'Open Jupyter Notebook', accelerator: 'Command+O', click: () => {
 			openBrowser([]);
+		}},
+		{
+			type: 'separator'
+		},
+		{label: 'New Notebook', accelerator: 'Command+N', click: () => {
+			dialog.showSaveDialog({
+				title: 'New Notebook',
+				defaultPath: resolve(homedir(), 'Untitled.ipynb')
+			}, filepath => {
+				const defaultNotebook = {
+					cells: [],
+					metadata: {},
+					nbformat: 4,
+					nbformat_minor: 0 // eslint-disable-line camelcase
+				};
+				fs.writeFileSync(filepath, JSON.stringify(defaultNotebook, null, '  '));
+				openBrowser([filepath]);
+			});
 		}},
 		{label: 'Preferences...', accelerator: 'Command+,', click: () => {
 			exec(`open ${userConfigPath}`);
 		}},
+		{
+			type: 'separator'
+		},
     {label: 'Quit Juno', role: 'quit', accelerator: 'Command+Q'}
 	]);
 	tray.setToolTip('Juno is enabled');
@@ -92,8 +110,8 @@ app.on('ready', () => {
 	notebooksToOpen = [];
 
   // Launch or pick up jupyter daemon and get PID
-	jupyterPID = jupyter.getJupyterProcess(jupyterCommand, jupyterPort);
-	if (notebooks.length > 0 || openBrowserOnStartup) {
+	jupyterPID = jupyter.getJupyterProcess(globalConfig.jupyterCommand, globalConfig.jupyterPort);
+	if (notebooks.length > 0 || globalConfig.openBrowserOnStartup) {
 		openBrowser(notebooks);
 	}
 });
