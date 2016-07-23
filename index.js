@@ -111,6 +111,9 @@ app.on('ready', () => {
 				openBrowser([filepath]);
 			});
 		}},
+		{label: 'Notebook Config', accelerator: 'Command+J', click: () => {
+			exec(`open ${nbConfigPath}`);
+		}},
 		{label: 'Preferences...', accelerator: 'Command+,', click: () => {
 			exec(`open ${userConfigPath}`);
 		}},
