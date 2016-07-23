@@ -1,5 +1,4 @@
 const {execSync, exec, spawn} = require('child_process');
-const {homedir} = require('os');
 const {relative} = require('path');
 
 // Return a process pid which is listening specific port
@@ -14,33 +13,33 @@ function processListening(port) {
 }
 
 // Launch jupyter daemon and returns pid
-function launchJupyter(jupyterPath, targetPath, port) {
+function launchJupyter(command, rootPath, port) {
 	console.log('Launching Jupyter ...');
-	const options = [targetPath, `--port=${port}`, '--no-browser'];
-	const jupyter = spawn(jupyterPath, options, {detached: true});
+	const options = [rootPath, `--port=${port}`, '--no-browser'];
+	const jupyter = spawn(command, options, {detached: true});
 	return jupyter.pid;
 }
 
 // Open browser and show notebooks
-function openBrowser(notebooks, port) {
+function openBrowser(notebooks, rootPath, port) {
 	if (notebooks.length === 0) {
 		exec(`open http://localhost:${port}/tree`);
 	} else {
 		notebooks.forEach(notebook => {
-			const target = relative(homedir(), notebook);
+			const target = relative(rootPath, notebook);
 			exec(`open http://localhost:${port}/notebooks/${target}`);
 		});
 	}
 }
 
 // Fetch or launch jupyter and returns their PID
-function getJupyterProcess(jupyterPath, port) {
+function getJupyterProcess(command, rootPath, port) {
 	// Fetch existing process
 	let pid = processListening(port);
 
 	// Launch Jupyter if not existed
 	if (!pid) {
-		launchJupyter(jupyterPath, homedir(), port);
+		launchJupyter(command, rootPath, port);
 		console.log('Started');
 	}
 	while (!pid) {

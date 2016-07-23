@@ -9,31 +9,10 @@ const {app, dialog, shell, Menu, Tray} = require('electron'); // eslint-disable-
 // Our modules
 const jupyter = require('./jupyter');
 
-// Load config
-const userConfigPath = resolve(homedir(), '.junorc.json');
-const defaultConfig = {
-	jupyterCommand: resolve(homedir(), '.pyenv', 'shims', 'jupyter-notebook'),
-	jupyterPort: 8888,
-	openBrowserOnStartup: true
-};
-let globalConfig;
-try {
-	const userConfig = require(userConfigPath);
-	globalConfig = extend(defaultConfig, userConfig);
-} catch (err) {
-	fs.writeFileSync(userConfigPath, JSON.stringify(defaultConfig, null, '  '), 'utf-8');
-	globalConfig = defaultConfig;
-}
-
-// Global instances
-let tray = null;
-let jupyterPID = null;
-let notebooksToOpen = [];
-
 // Supress multiple instances
 const shouldQuit = app.makeSingleInstance(argv => {
 	const notebooks = argv.slice(2);
-	jupyter.openBrowser(notebooks, globalConfig.jupyterPort);
+	openBrowser(notebooks);
 });
 
 // Quit if the app instance is secondary one
@@ -42,9 +21,41 @@ if (shouldQuit) {
 	return;
 }
 
+// Global instances
+let tray = null;
+let jupyterPID = null;
+let notebooksToOpen = [];
+let globalConfig = null;
+
+// Global constants
+const userConfigPath = resolve(homedir(), '.junorc.json');
+const nbConfigPath = resolve(homedir(), '.jupyter/nbconfig', 'notebook.json');
+const defaultConfig = {
+	jupyterCommand: resolve(homedir(), '.pyenv', 'shims', 'jupyter-notebook'),
+	jupyterPort: 8888,
+	jupyterHome: homedir(),
+	openBrowserOnStartup: true
+};
+
+// Load config and merge to default config
+function loadConfig() {
+	let config;
+	try {
+		const userConfig = require(userConfigPath);
+		config = extend(defaultConfig, userConfig);
+	} catch (err) {
+		fs.writeFileSync(userConfigPath, JSON.stringify(defaultConfig, null, '  '), 'utf-8');
+		config = defaultConfig;
+	}
+	return config;
+}
+
+// Load config
+globalConfig = loadConfig();
+
 // Open browser and show notebooks
 function openBrowser(notebooks) {
-	jupyter.openBrowser(notebooks, globalConfig.jupyterPort);
+	jupyter.openBrowser(notebooks, globalConfig.jupyterHome, globalConfig.jupyterPort);
 }
 
 // Open browser when files are passed
@@ -85,8 +96,11 @@ app.on('ready', () => {
 		{label: 'New Notebook', accelerator: 'Command+N', click: () => {
 			dialog.showSaveDialog({
 				title: 'New Notebook',
-				defaultPath: resolve(homedir(), 'Untitled.ipynb')
+				defaultPath: resolve(globalConfig.jupyterHome, 'Untitled.ipynb')
 			}, filepath => {
+				if (!filepath) {
+					return;
+				}
 				const defaultNotebook = {
 					cells: [],
 					metadata: {},
@@ -122,7 +136,13 @@ app.on('ready', () => {
 	notebooksToOpen = [];
 
   // Launch or pick up jupyter daemon and get PID
-	jupyterPID = jupyter.getJupyterProcess(globalConfig.jupyterCommand, globalConfig.jupyterPort);
+	jupyterPID = jupyter.getJupyterProcess(
+		globalConfig.jupyterCommand,
+		globalConfig.jupyterHome,
+		globalConfig.jupyterPort
+	);
+
+	// Open browser to show notebooks
 	if (notebooks.length > 0 || globalConfig.openBrowserOnStartup) {
 		openBrowser(notebooks);
 	}
