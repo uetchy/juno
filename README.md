@@ -6,6 +6,8 @@ Jupyter Notebook stays on macOS menubar. Powered by Electron.
 
 ![](http://randompaper.co.s3.amazonaws.com/juno/screenshot.png)
 
+![](http://randompaper.co.s3.amazonaws.com/juno/open-with-juno.png)
+
 ## Download
 
 See [releases](https://github.com/uetchy/juno/releases) and download the app.
