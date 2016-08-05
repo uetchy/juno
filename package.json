@@ -9,7 +9,7 @@
   "repository": "uetchy/juno",
   "electronVersion": "1.2.8",
   "scripts": {
-    "test": "xo",
+    "test": "mocha && xo",
     "start": "electron .",
     "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --platform=darwin --arch=x64 --version=$npm_package_electronVersion --app-version=$npm_package_version --icon=./assets/app.icns --overwrite",
     "postbuild": "node scripts/post-build-mac.js",
@@ -22,8 +22,10 @@
   "devDependencies": {
     "electron-packager": "^7.3.0",
     "electron-prebuilt": "^1.2.8",
+    "mocha": "^3.0.1",
     "npm-run-all": "^2.3.0",
     "plist": "^1.2.0",
+    "spectron": "^3.3.0",
     "xo": "^0.16.0"
   },
   "xo": {
