@@ -47,11 +47,11 @@ default parameters are here:
 
 Feel free to [report issues](https://github.com/uetchy/juno/issues/new) you find with Juno.
 
-## Upcoming
+## Roadmap
 
 - [x] Launch Juno in specified directory
 - [ ] Terminal integration
-- [ ] Test suite
+- [x] Test suite
 - [ ] Auto update
 
 ## Dev
