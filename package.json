@@ -7,7 +7,7 @@
   "main": ".",
   "license": "MIT",
   "repository": "uetchy/juno",
-  "electronVersion": "1.2.8",
+  "electronVersion": "1.3.3",
   "scripts": {
     "test": "nyc ava && xo",
     "coverage": "nyc report --reporter=text-lcov",
