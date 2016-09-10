@@ -1,3 +1,4 @@
 node_modules
 /dist
 *.ipynb
+/.nyc_output
