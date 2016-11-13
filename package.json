@@ -7,9 +7,9 @@
   "main": ".",
   "license": "MIT",
   "repository": "uetchy/juno",
-  "electronVersion": "1.3.3",
+  "electronVersion": "1.4.6",
   "scripts": {
-    "test": "nyc ava && xo",
+    "test": "xo",
     "coverage": "nyc report --reporter=text-lcov",
     "start": "electron .",
     "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --platform=darwin --arch=x64 --version=$npm_package_electronVersion --app-version=$npm_package_version --icon=./assets/app.icns --overwrite",
@@ -33,6 +33,6 @@
     "npm-run-all": "^3.1.0",
     "nyc": "^8.3.0",
     "plist": "^2.0.1",
-    "xo": "^0.16.0"
+    "xo": "^0.17.0"
   }
 }
