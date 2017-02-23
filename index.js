@@ -32,7 +32,7 @@ const userConfigPath = resolve(homedir(), '.junorc.json');
 const nbConfigPath = resolve(homedir(), '.jupyter/nbconfig', 'notebook.json');
 
 const defaultConfig = {
-	jupyterCommand: resolve(homedir(), '.pyenv', 'shims', 'jupyter-notebook'),
+	jupyterCommand: '/usr/local/bin/jupyter-notebook',
 	jupyterPort: 8888,
 	jupyterHome: homedir(),
 	openBrowserOnStartup: true
