@@ -37,11 +37,14 @@ Juno config is located on `~/.junorc.json`.
 default parameters are here:
 ```json
 {
-  "jupyterCommand": "~/.pyenv/shims/jupyter-notebook",
+  "jupyterCommand": "/usr/local/bin/jupyter-notebook",
   "jupyterPort": 8888,
+  "jupyterHome": "~",
   "openBrowserOnStartup": true
 }
 ```
+
+You can also specify `/usr/local/bin/jupyter-lab` to `jupyterCommand` to use Jupyter Lab.
 
 ## Bugs
 
