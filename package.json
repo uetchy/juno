@@ -7,7 +7,7 @@
   "main": ".",
   "license": "MIT",
   "repository": "uetchy/juno",
-  "electronVersion": "1.4.6",
+  "electronVersion": "1.4.15",
   "scripts": {
     "test": "xo",
     "coverage": "nyc report --reporter=text-lcov",
@@ -16,7 +16,7 @@
     "postbuild": "node scripts/post-build-mac.js",
     "release": "npm-run-all test build"
   },
-  "xo": {
+  "standard": {
     "envs": [
       "browser"
     ]
@@ -26,13 +26,13 @@
     "yargs": "^6.0.0"
   },
   "devDependencies": {
-    "ava": "^0.16.0",
+    "ava": "^0.18.2",
     "coveralls": "^2.11.14",
-    "electron": "^1.4.3",
+    "electron": "^1.4.15",
     "electron-packager": "^8.1.0",
-    "npm-run-all": "^3.1.0",
-    "nyc": "^8.3.0",
+    "npm-run-all": "^4.0.1",
+    "nyc": "^10.1.2",
     "plist": "^2.0.1",
-    "xo": "^0.17.0"
+    "standard": "^8.6.0"
   }
 }
