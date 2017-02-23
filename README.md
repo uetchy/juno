@@ -20,13 +20,11 @@ See [releases](https://github.com/uetchy/juno/releases) and download the app.
 
 - Jupyter Notebook
 
-### How to install Jupyter Notebbok
+### How to install Jupyter Notebook
 
 ```
-$ brew install pyenv
-$ pyenv install miniconda3-latest
-$ pyenv global miniconda3-latest
-$ conda install jupyter
+$ brew install python3
+$ pip3 install jupyter
 $ jupyter notebook
 ```
 
