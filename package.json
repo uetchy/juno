@@ -22,17 +22,17 @@
     ]
   },
   "dependencies": {
-    "extend": "^3.0.0",
-    "yargs": "^6.0.0"
+    "extend": "^3.0.1",
+    "yargs": "^8.0.1"
   },
   "devDependencies": {
-    "ava": "^0.18.2",
-    "coveralls": "^2.11.14",
-    "electron": "^1.4.15",
-    "electron-packager": "^8.1.0",
-    "npm-run-all": "^4.0.1",
-    "nyc": "^10.1.2",
-    "plist": "^2.0.1",
-    "standard": "^8.6.0"
+    "ava": "^0.19.1",
+    "coveralls": "^2.13.1",
+    "electron": "^1.6.7",
+    "electron-packager": "^8.7.0",
+    "npm-run-all": "^4.0.2",
+    "nyc": "^10.3.2",
+    "plist": "^2.1.0",
+    "standard": "^10.0.2"
   }
 }
