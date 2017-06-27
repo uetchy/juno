@@ -7,9 +7,9 @@
   "main": ".",
   "license": "MIT",
   "repository": "uetchy/juno",
-  "electronVersion": "1.4.15",
+  "electronVersion": "1.6.8",
   "scripts": {
-    "test": "xo",
+    "test": "standard",
     "coverage": "nyc report --reporter=text-lcov",
     "start": "electron .",
     "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --platform=darwin --arch=x64 --version=$npm_package_electronVersion --app-version=$npm_package_version --icon=./assets/app.icns --overwrite",
