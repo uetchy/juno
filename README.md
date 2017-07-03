@@ -42,7 +42,7 @@ default parameters are here:
 }
 ```
 
-You can also specify `/usr/local/bin/jupyter-lab` to `jupyterCommand` to use Jupyter Lab.
+You can also specify `/usr/local/bin/jupyter-lab` to `jupyterCommand` to use Jupyter Lab (you may also want to install `jupyterlab` via `pip3 install jupyterlab`.)
 
 ## Bugs
 
@@ -55,7 +55,7 @@ Feel free to [report issues](https://github.com/uetchy/juno/issues/new) you find
 - [x] Test suite
 - [ ] Auto update
 
-## Dev
+## Development Installation
 
 ```
 $ npm install
