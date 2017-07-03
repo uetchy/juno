@@ -50,6 +50,22 @@ You can also specify `/usr/local/bin/jupyter-lab` to `jupyterCommand` to use Jup
 
 Put `~/.pyenv/shims/jupyter` into `jupyterCommand` if you are on pyenv-enabled environment.
 
+## Launch Juno from Terminal
+
+Add `juno` command to open Jupyter notebooks from Terminal. Put following code to your shell config file.
+
+```bash
+juno() {
+  open -a Juno $1
+}
+```
+
+to open a notebook:
+
+```
+juno "Untitled.ipynb"
+```
+
 ## Bugs
 
 Feel free to [report issues](https://github.com/uetchy/juno/issues/new) you find with Juno.
@@ -57,7 +73,7 @@ Feel free to [report issues](https://github.com/uetchy/juno/issues/new) you find
 ## Roadmap
 
 - [x] Launch Juno in specified directory
-- [ ] Terminal integration
+- [x] Terminal integration
 - [x] Test suite
 - [ ] Auto update
 
