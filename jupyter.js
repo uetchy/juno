@@ -1,5 +1,5 @@
-const { execSync, exec, spawn } = require("child_process");
-const { relative } = require("path");
+const { execSync, exec, spawn } = require('child_process');
+const { relative } = require('path');
 
 // Return a process pid which is listening specific port
 function processListening(port) {
@@ -14,12 +14,12 @@ function processListening(port) {
 
 // Launch jupyter daemon and returns pid
 function launchJupyter(command, rootPath, port) {
-  console.log("jupyter: launching");
-  const options = [rootPath, `--port=${port}`, "--no-browser"];
+  console.log('jupyter: launching');
+  const options = [rootPath, `--port=${port}`, '--no-browser'];
   const jupyter = spawn(command, options, { detached: true });
   console.log(`pid: ${jupyter.pid}`);
-  if (jupyter.pid == undefined) {
-    return new Error("Jupyter wont started");
+  if (jupyter.pid === undefined) {
+    return new Error('Jupyter wont started');
   }
   return null;
 }
@@ -45,10 +45,10 @@ function getJupyterProcess(command, rootPath, port) {
   if (!pid) {
     err = launchJupyter(command, rootPath, port);
     if (err) {
-      console.log("jupyter: something went wrong");
+      console.log('jupyter: something went wrong');
       return null;
     }
-    console.log("jupyter: started");
+    console.log('jupyter: started');
 
     while (!pid) {
       pid = processListening(port);

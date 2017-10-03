@@ -1,13 +1,13 @@
-const { homedir } = require("os");
-const { resolve } = require("path");
-const { exec } = require("child_process");
-const fs = require("fs");
-const extend = require("extend");
-const { argv } = require("yargs");
-const { app, dialog, shell, Menu, Tray } = require("electron"); // eslint-disable-line import/no-extraneous-dependencies
+const { homedir } = require('os');
+const { resolve } = require('path');
+const { exec } = require('child_process');
+const fs = require('fs');
+const extend = require('extend');
+const { argv } = require('yargs');
+const { app, dialog, shell, Menu, Tray } = require('electron'); // eslint-disable-line import/no-extraneous-dependencies
 
 // Our modules
-const jupyter = require("./jupyter");
+const jupyter = require('./jupyter');
 
 // Supress multiple instances
 const shouldQuit = app.makeSingleInstance(argv => {
@@ -28,11 +28,11 @@ var notebooksToOpen = [];
 var globalConfig = null;
 
 // Global constants
-const userConfigPath = resolve(homedir(), ".junorc.json");
-const nbConfigPath = resolve(homedir(), ".jupyter/nbconfig", "notebook.json");
+const userConfigPath = resolve(homedir(), '.junorc.json');
+const nbConfigPath = resolve(homedir(), '.jupyter/nbconfig', 'notebook.json');
 
 const defaultConfig = {
-  jupyterCommand: "/usr/local/bin/jupyter-notebook",
+  jupyterCommand: '/usr/local/bin/jupyter-notebook',
   jupyterPort: 8888,
   jupyterHome: homedir(),
   openBrowserOnStartup: true
@@ -47,8 +47,8 @@ function loadConfig() {
   } catch (err) {
     fs.writeFileSync(
       userConfigPath,
-      JSON.stringify(defaultConfig, null, "  "),
-      "utf-8"
+      JSON.stringify(defaultConfig, null, '  '),
+      'utf-8'
     );
     config = defaultConfig;
   }
@@ -74,26 +74,26 @@ function updateContextMenu(stateText) {
       enabled: false
     },
     {
-      type: "separator"
+      type: 'separator'
     },
     {
-      label: "Open Jupyter Notebook",
-      accelerator: "Command+O",
+      label: 'Open Jupyter Notebook',
+      accelerator: 'Command+O',
       click: () => {
         openBrowser([]);
       }
     },
     {
-      type: "separator"
+      type: 'separator'
     },
     {
-      label: "New Notebook",
-      accelerator: "Command+N",
+      label: 'New Notebook',
+      accelerator: 'Command+N',
       click: () => {
         dialog.showSaveDialog(
           {
-            title: "New Notebook",
-            defaultPath: resolve(globalConfig.jupyterHome, "Untitled.ipynb")
+            title: 'New Notebook',
+            defaultPath: resolve(globalConfig.jupyterHome, 'Untitled.ipynb')
           },
           filepath => {
             if (!filepath) {
@@ -107,7 +107,7 @@ function updateContextMenu(stateText) {
             };
             fs.writeFileSync(
               filepath,
-              JSON.stringify(defaultNotebook, null, "  ")
+              JSON.stringify(defaultNotebook, null, '  ')
             );
             openBrowser([filepath]);
           }
@@ -115,41 +115,41 @@ function updateContextMenu(stateText) {
       }
     },
     {
-      label: "Notebook Config",
-      accelerator: "Command+J",
+      label: 'Notebook Config',
+      accelerator: 'Command+J',
       click: () => {
         exec(`open ${nbConfigPath}`);
       }
     },
     {
-      label: "Preferences...",
-      accelerator: "Command+,",
+      label: 'Preferences...',
+      accelerator: 'Command+,',
       click: () => {
         exec(`open ${userConfigPath}`);
       }
     },
     {
-      type: "separator"
+      type: 'separator'
     },
     {
-      label: "Open Documentation",
+      label: 'Open Documentation',
       click: () => {
-        shell.openExternal("https://github.com/uetchy/juno");
+        shell.openExternal('https://github.com/uetchy/juno');
       }
     },
     {
-      label: "Send Feedback",
+      label: 'Send Feedback',
       click: () => {
-        shell.openExternal("https://github.com/uetchy/juno/issues/new");
+        shell.openExternal('https://github.com/uetchy/juno/issues/new');
       }
     },
     {
-      type: "separator"
+      type: 'separator'
     },
     {
-      label: "Quit Juno",
-      role: "quit",
-      accelerator: "Command+Q"
+      label: 'Quit Juno',
+      role: 'quit',
+      accelerator: 'Command+Q'
     }
   ]);
   tray.setToolTip(stateText);
@@ -157,7 +157,7 @@ function updateContextMenu(stateText) {
 }
 
 // Open browser when files are passed
-app.on("open-file", (event, path) => {
+app.on('open-file', (event, path) => {
   event.preventDefault();
   if (jupyterPID) {
     openBrowser([path]);
@@ -167,12 +167,12 @@ app.on("open-file", (event, path) => {
 });
 
 // Kill jupyter daemon when quitting
-app.on("before-quit", () => {
-  process.kill(jupyterPID, "SIGHUP");
+app.on('before-quit', () => {
+  process.kill(jupyterPID, 'SIGHUP');
 });
 
 // Initialize app
-app.on("ready", () => {
+app.on('ready', () => {
   // Hide dock icon
   if (app.dock) {
     app.dock.hide();
@@ -180,7 +180,7 @@ app.on("ready", () => {
 
   // Setup macOS tray menu
   tray = new Tray(`${__dirname}/assets/tray@2x.png`);
-  updateContextMenu("Preparing to start");
+  updateContextMenu('Preparing to start');
 
   // Gather notebooks
   const notebooks = notebooksToOpen.concat(argv._);
@@ -194,9 +194,9 @@ app.on("ready", () => {
   );
 
   if (jupyterPID == null) {
-    updateContextMenu("Something went wrong. Check your .junorc.json");
+    updateContextMenu('Something went wrong. Check your .junorc.json');
   } else {
-    updateContextMenu("Running on localhost:" + globalConfig.jupyterPort);
+    updateContextMenu('Running on localhost:' + globalConfig.jupyterPort);
     // Open browser to show notebooks
     if (notebooks.length > 0 || globalConfig.openBrowserOnStartup) {
       openBrowser(notebooks);

@@ -7,32 +7,26 @@
   "main": ".",
   "license": "MIT",
   "repository": "uetchy/juno",
-  "electronVersion": "1.6.8",
+  "electronVersion": "1.7.8",
   "scripts": {
-    "test": "standard",
+    "test": "prettier --write {test,scripts}/*.js *.js --single-quote",
     "coverage": "nyc report --reporter=text-lcov",
     "start": "electron .",
-    "build": "electron-packager . $npm_package_productName --out=dist --ignore='^/dist$' --prune --asar --platform=darwin --arch=x64 --electron-version=$npm_package_electronVersion --app-version=$npm_package_version --icon=./assets/app.icns --overwrite",
+    "build": "electron-packager . $npm_package_productName --out=dist --asar --platform=darwin --arch=x64 --electron-version=$npm_package_electronVersion --icon=./assets/app.icns --overwrite",
     "postbuild": "node scripts/post-build-mac.js",
     "release": "npm-run-all test build"
   },
-  "standard": {
-    "envs": [
-      "browser"
-    ]
-  },
   "dependencies": {
     "extend": "^3.0.1",
-    "yargs": "^8.0.1"
+    "yargs": "^9.0.1"
   },
   "devDependencies": {
-    "ava": "^0.20.0",
-    "coveralls": "^2.13.1",
-    "electron": "^1.6.8",
-    "electron-packager": "^8.7.2",
-    "npm-run-all": "^4.0.2",
-    "nyc": "^11.0.3",
-    "plist": "^2.1.0",
-    "standard": "^10.0.2"
+    "ava": "^0.22.0",
+    "coveralls": "^3.0.0",
+    "electron": "^1.7.8",
+    "electron-packager": "^9.1.0",
+    "npm-run-all": "^4.1.1",
+    "nyc": "^11.2.1",
+    "plist": "^2.1.0"
   }
 }
