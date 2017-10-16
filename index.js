@@ -6,26 +6,25 @@ const extend = require('extend');
 const { argv } = require('yargs');
 const { app, dialog, shell, Menu, Tray } = require('electron'); // eslint-disable-line import/no-extraneous-dependencies
 
+// Global instances
+let tray = null;
+let jupyterPID = null;
+let notebooksToOpen = [];
+let globalConfig = null;
+
 // Our modules
 const jupyter = require('./jupyter');
 
 // Supress multiple instances
-const shouldQuit = app.makeSingleInstance(argv => {
-  const notebooks = argv.slice(2);
+const shouldQuit = app.makeSingleInstance((args) => {
+  const notebooks = args.slice(2);
   openBrowser(notebooks);
 });
 
 // Quit if the app instance is secondary one
 if (shouldQuit) {
   app.quit();
-  return;
 }
-
-// Global instances
-var tray = null;
-var jupyterPID = null;
-var notebooksToOpen = [];
-var globalConfig = null;
 
 // Global constants
 const userConfigPath = resolve(homedir(), '.junorc.json');
@@ -35,7 +34,7 @@ const defaultConfig = {
   jupyterCommand: '/usr/local/bin/jupyter-notebook',
   jupyterPort: 8888,
   jupyterHome: homedir(),
-  openBrowserOnStartup: true
+  openBrowserOnStartup: true,
 };
 
 // Load config and merge to default config
@@ -48,7 +47,7 @@ function loadConfig() {
     fs.writeFileSync(
       userConfigPath,
       JSON.stringify(defaultConfig, null, '  '),
-      'utf-8'
+      'utf-8',
     );
     config = defaultConfig;
   }
@@ -63,7 +62,7 @@ function openBrowser(notebooks) {
   jupyter.openBrowser(
     notebooks,
     globalConfig.jupyterHome,
-    globalConfig.jupyterPort
+    globalConfig.jupyterPort,
   );
 }
 
@@ -71,20 +70,20 @@ function updateContextMenu(stateText) {
   const contextMenu = Menu.buildFromTemplate([
     {
       label: stateText,
-      enabled: false
+      enabled: false,
     },
     {
-      type: 'separator'
+      type: 'separator',
     },
     {
       label: 'Open Jupyter Notebook',
       accelerator: 'Command+O',
       click: () => {
         openBrowser([]);
-      }
+      },
     },
     {
-      type: 'separator'
+      type: 'separator',
     },
     {
       label: 'New Notebook',
@@ -93,9 +92,9 @@ function updateContextMenu(stateText) {
         dialog.showSaveDialog(
           {
             title: 'New Notebook',
-            defaultPath: resolve(globalConfig.jupyterHome, 'Untitled.ipynb')
+            defaultPath: resolve(globalConfig.jupyterHome, 'Untitled.ipynb'),
           },
-          filepath => {
+          (filepath) => {
             if (!filepath) {
               return;
             }
@@ -103,54 +102,54 @@ function updateContextMenu(stateText) {
               cells: [],
               metadata: {},
               nbformat: 4,
-              nbformat_minor: 0 // eslint-disable-line camelcase
+              nbformat_minor: 0, // eslint-disable-line camelcase
             };
             fs.writeFileSync(
               filepath,
-              JSON.stringify(defaultNotebook, null, '  ')
+              JSON.stringify(defaultNotebook, null, '  '),
             );
             openBrowser([filepath]);
-          }
+          },
         );
-      }
+      },
     },
     {
       label: 'Notebook Config',
       accelerator: 'Command+J',
       click: () => {
         exec(`open ${nbConfigPath}`);
-      }
+      },
     },
     {
       label: 'Preferences...',
       accelerator: 'Command+,',
       click: () => {
         exec(`open ${userConfigPath}`);
-      }
+      },
     },
     {
-      type: 'separator'
+      type: 'separator',
     },
     {
       label: 'Open Documentation',
       click: () => {
         shell.openExternal('https://github.com/uetchy/juno');
-      }
+      },
     },
     {
       label: 'Send Feedback',
       click: () => {
         shell.openExternal('https://github.com/uetchy/juno/issues/new');
-      }
+      },
     },
     {
-      type: 'separator'
+      type: 'separator',
     },
     {
       label: 'Quit Juno',
       role: 'quit',
-      accelerator: 'Command+Q'
-    }
+      accelerator: 'Command+Q',
+    },
   ]);
   tray.setToolTip(stateText);
   tray.setContextMenu(contextMenu);
@@ -190,13 +189,13 @@ app.on('ready', () => {
   jupyterPID = jupyter.getJupyterProcess(
     globalConfig.jupyterCommand,
     globalConfig.jupyterHome,
-    globalConfig.jupyterPort
+    globalConfig.jupyterPort,
   );
 
   if (jupyterPID == null) {
     updateContextMenu('Something went wrong. Check your .junorc.json');
   } else {
-    updateContextMenu('Running on localhost:' + globalConfig.jupyterPort);
+    updateContextMenu(`Running on localhost: ${globalConfig.jupyterPort}`);
     // Open browser to show notebooks
     if (notebooks.length > 0 || globalConfig.openBrowserOnStartup) {
       openBrowser(notebooks);

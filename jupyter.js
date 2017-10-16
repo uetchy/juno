@@ -29,7 +29,7 @@ function openBrowser(notebooks, rootPath, port) {
   if (notebooks.length === 0) {
     exec(`open "http://localhost:${port}"`);
   } else {
-    notebooks.forEach(notebook => {
+    notebooks.forEach((notebook) => {
       const target = relative(rootPath, notebook);
       exec(`open "http://localhost:${port}/notebooks/${target}"`);
     });
@@ -43,7 +43,7 @@ function getJupyterProcess(command, rootPath, port) {
 
   // Launch Jupyter if not existed
   if (!pid) {
-    err = launchJupyter(command, rootPath, port);
+    const err = launchJupyter(command, rootPath, port);
     if (err) {
       console.log('jupyter: something went wrong');
       return null;
@@ -60,5 +60,5 @@ function getJupyterProcess(command, rootPath, port) {
 
 module.exports = {
   openBrowser,
-  getJupyterProcess
+  getJupyterProcess,
 };
