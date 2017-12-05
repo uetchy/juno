@@ -29,7 +29,7 @@ function openBrowser(notebooks, rootPath, port) {
   if (notebooks.length === 0) {
     exec(`open "http://localhost:${port}"`);
   } else {
-    notebooks.forEach((notebook) => {
+    notebooks.forEach(notebook => {
       const target = relative(rootPath, notebook);
       exec(`open "http://localhost:${port}/notebooks/${target}"`);
     });

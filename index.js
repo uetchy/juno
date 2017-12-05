@@ -16,7 +16,7 @@ let globalConfig = null;
 const jupyter = require('./jupyter');
 
 // Supress multiple instances
-const shouldQuit = app.makeSingleInstance((args) => {
+const shouldQuit = app.makeSingleInstance(args => {
   const notebooks = args.slice(2);
   openBrowser(notebooks);
 });
@@ -47,7 +47,7 @@ function loadConfig() {
     fs.writeFileSync(
       userConfigPath,
       JSON.stringify(defaultConfig, null, '  '),
-      'utf-8',
+      'utf-8'
     );
     config = defaultConfig;
   }
@@ -62,7 +62,7 @@ function openBrowser(notebooks) {
   jupyter.openBrowser(
     notebooks,
     globalConfig.jupyterHome,
-    globalConfig.jupyterPort,
+    globalConfig.jupyterPort
   );
 }
 
@@ -94,7 +94,7 @@ function updateContextMenu(stateText) {
             title: 'New Notebook',
             defaultPath: resolve(globalConfig.jupyterHome, 'Untitled.ipynb'),
           },
-          (filepath) => {
+          filepath => {
             if (!filepath) {
               return;
             }
@@ -106,10 +106,10 @@ function updateContextMenu(stateText) {
             };
             fs.writeFileSync(
               filepath,
-              JSON.stringify(defaultNotebook, null, '  '),
+              JSON.stringify(defaultNotebook, null, '  ')
             );
             openBrowser([filepath]);
-          },
+          }
         );
       },
     },
@@ -189,7 +189,7 @@ app.on('ready', () => {
   jupyterPID = jupyter.getJupyterProcess(
     globalConfig.jupyterCommand,
     globalConfig.jupyterHome,
-    globalConfig.jupyterPort,
+    globalConfig.jupyterPort
   );
 
   if (jupyterPID == null) {

@@ -1,6 +1,11 @@
 ![Juno](http://randompaper.co.s3.amazonaws.com/juno/header.png)
 
-[![GitHub release](https://img.shields.io/github/release/uetchy/juno.svg?maxAge=2592000)](https://github.com/uetchy/juno/releases/latest) [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/uetchy/juno/master/LICENSE) [![GitHub issues](https://img.shields.io/github/issues/uetchy/juno.svg)](https://github.com/uetchy/juno/issues) [![Join the chat at https://gitter.im/uetchy/juno](https://badges.gitter.im/uetchy/juno.svg)](https://gitter.im/uetchy/juno?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/uetchy/juno.svg?branch=master)](https://travis-ci.org/uetchy/juno) [![Twitter](https://img.shields.io/twitter/url/http/github.com/uetchy/juno.svg?style=social)](https://twitter.com/intent/tweet?text=uetchy/juno – Jupyter Notebook stays on macOS menubar.&url=https://github.com/uetchy/juno)
+[![GitHub release](https://img.shields.io/github/release/uetchy/juno.svg?maxAge=2592000)](https://github.com/uetchy/juno/releases/latest)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/uetchy/juno/master/LICENSE)
+[![GitHub issues](https://img.shields.io/github/issues/uetchy/juno.svg)](https://github.com/uetchy/juno/issues)
+[![Join the chat at https://gitter.im/uetchy/juno](https://badges.gitter.im/uetchy/juno.svg)](https://gitter.im/uetchy/juno?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/uetchy/juno.svg?branch=master)](https://travis-ci.org/uetchy/juno)
+[![Twitter](https://img.shields.io/twitter/url/http/github.com/uetchy/juno.svg?style=social)](https%3A%2F%2Ftwitter.com%2Fintent%2Ftweet%3Ftext%3Duetchy%2Fjuno%20%E2%80%93%20Jupyter%20Notebook%20stays%20on%20macOS%20menubar.%26url%3Dhttps%3A%2F%2Fgithub.com%2Fuetchy%2Fjuno)
 
 Jupyter Notebook stays on macOS menubar. Powered by Electron.
 
@@ -14,11 +19,11 @@ See [releases](https://github.com/uetchy/juno/releases) and download the app.
 
 ### Supported platforms
 
-- macOS
+* macOS
 
 ## Requirements
 
-- Jupyter Notebook
+* Jupyter Notebook
 
 ### How to install Jupyter Notebook
 
@@ -33,6 +38,7 @@ $ jupyter notebook
 Juno config is located on `~/.junorc.json`.
 
 default parameters are here:
+
 ```json
 {
   "jupyterCommand": "/usr/local/bin/jupyter-notebook",
@@ -44,15 +50,19 @@ default parameters are here:
 
 ### JupyterLab
 
-You can also specify `/usr/local/bin/jupyter-lab` to `jupyterCommand` to use Jupyter Lab (you may also want to install `jupyterlab` via `pip3 install jupyterlab`.)
+You can also specify `/usr/local/bin/jupyter-lab` to `jupyterCommand` to use
+Jupyter Lab (you may also want to install `jupyterlab` via `pip3 install
+jupyterlab`.)
 
 ### pyenv
 
-Put `~/.pyenv/shims/jupyter` into `jupyterCommand` if you are on pyenv-enabled environment.
+Put `~/.pyenv/shims/jupyter` into `jupyterCommand` if you are on pyenv-enabled
+environment.
 
 ## Launch Juno from Terminal
 
-Add `juno` command to open Jupyter notebooks from Terminal. Put following code to your shell config file.
+Add `juno` command to open Jupyter notebooks from Terminal. Put following code
+to your shell config file.
 
 ```bash
 juno() {
@@ -68,14 +78,15 @@ juno "Untitled.ipynb"
 
 ## Bugs
 
-Feel free to [report issues](https://github.com/uetchy/juno/issues/new) you find with Juno.
+Feel free to [report issues](https://github.com/uetchy/juno/issues/new) you find
+with Juno.
 
 ## Roadmap
 
-- [x] Launch Juno in specified directory
-- [x] Terminal integration
-- [x] Test suite
-- [ ] Auto update
+* [x] Launch Juno in specified directory
+* [x] Terminal integration
+* [x] Test suite
+* [ ] Auto update
 
 ## Development Installation
 
@@ -99,9 +110,9 @@ $ npm test
 $ npm run build
 ```
 
-Builds the app for OS X, Linux, and Windows, using [electron-packager](https://github.com/maxogden/electron-packager).
-
+Builds the app for OS X, Linux, and Windows, using
+[electron-packager](https://github.com/maxogden/electron-packager).
 
 ## License
 
-MIT © [Yasuaki Uechi](https://randompaper.co)
+MIT © [Yasuaki Uechi](y@uechi.io)
