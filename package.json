@@ -7,7 +7,7 @@
   "main": ".",
   "license": "MIT",
   "repository": "uetchy/juno",
-  "electronVersion": "1.7.8",
+  "electronVersion": "1.7.9",
   "scripts": {
     "test": "prettier --write {test,scripts}/*.js *.js --single-quote",
     "coverage": "nyc report --reporter=text-lcov",
