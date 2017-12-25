@@ -51,8 +51,7 @@ default parameters are here:
 ### JupyterLab
 
 You can also specify `/usr/local/bin/jupyter-lab` to `jupyterCommand` to use
-Jupyter Lab (you may also want to install `jupyterlab` via `pip3 install
-jupyterlab`.)
+Jupyter Lab (you may also want to install `jupyterlab` via `pip3 install jupyterlab`.)
 
 ### pyenv
 

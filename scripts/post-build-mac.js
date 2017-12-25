@@ -1,13 +1,13 @@
-const { join } = require('path');
-const fs = require('fs');
-const plist = require('plist');
+const { join } = require('path')
+const fs = require('fs')
+const plist = require('plist')
 
 const plistPath = join(
   __dirname,
   '../dist/Juno-darwin-x64/Juno.app/Contents',
-  'Info.plist',
-);
-const appPlist = plist.parse(fs.readFileSync(plistPath).toString());
+  'Info.plist'
+)
+const appPlist = plist.parse(fs.readFileSync(plistPath).toString())
 
 appPlist.CFBundleDocumentTypes = [
   {
@@ -16,5 +16,5 @@ appPlist.CFBundleDocumentTypes = [
     CFBundleTypeOSTypes: ['***'],
     CFBundleTypeRole: 'Editor',
   },
-];
-fs.writeFileSync(plistPath, plist.build(appPlist));
+]
+fs.writeFileSync(plistPath, plist.build(appPlist))
