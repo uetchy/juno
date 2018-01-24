@@ -12,22 +12,21 @@
     "test": "prettier --write {test,scripts}/*.js *.js --single-quote",
     "coverage": "nyc report --reporter=text-lcov",
     "start": "electron .",
-    "build":
-      "electron-packager . $npm_package_productName --out=dist --asar --platform=darwin --arch=x64 --electron-version=$npm_package_electronVersion --icon=./assets/app.icns --overwrite",
+    "build": "electron-packager . $npm_package_productName --out=dist --asar --platform=darwin --arch=x64 --electron-version=$npm_package_electronVersion --icon=./assets/app.icns --overwrite",
     "postbuild": "node scripts/post-build-mac.js",
     "release": "npm-run-all test build"
   },
   "dependencies": {
     "extend": "^3.0.1",
-    "yargs": "^10.0.3"
+    "yargs": "^11.0.0"
   },
   "devDependencies": {
     "ava": "^0.24.0",
     "coveralls": "^3.0.0",
-    "electron": "^1.7.9",
-    "electron-packager": "^10.1.0",
+    "electron": "^1.7.11",
+    "electron-packager": "^10.1.1",
     "npm-run-all": "^4.1.2",
-    "nyc": "^11.3.0",
+    "nyc": "^11.4.1",
     "plist": "^2.1.0"
   }
 }
