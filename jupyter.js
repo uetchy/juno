@@ -3,13 +3,12 @@ const { relative } = require('path')
 
 // Return a process pid which is listening specific port
 function processListening(port) {
-  let pid
   try {
-    pid = execSync(`sleep 0.5 && lsof -ti TCP:${port} -s TCP:LISTEN`)
+    const pid = execSync(`sleep 0.5 && lsof -ti TCP:${port} -s TCP:LISTEN`)
+    return String(pid)
   } catch (err) {
     return null
   }
-  return String(pid)
 }
 
 // Launch jupyter daemon and returns pid

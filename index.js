@@ -44,11 +44,7 @@ function loadConfig() {
     const userConfig = require(userConfigPath)
     config = extend(defaultConfig, userConfig)
   } catch (err) {
-    fs.writeFileSync(
-      userConfigPath,
-      JSON.stringify(defaultConfig, null, '  '),
-      'utf-8'
-    )
+    fs.writeFileSync(userConfigPath, JSON.stringify(defaultConfig, null, '  '), 'utf-8')
     config = defaultConfig
   }
   return config
@@ -59,11 +55,7 @@ globalConfig = loadConfig()
 
 // Open browser and show notebooks
 function openBrowser(notebooks) {
-  jupyter.openBrowser(
-    notebooks,
-    globalConfig.jupyterHome,
-    globalConfig.jupyterPort
-  )
+  jupyter.openBrowser(notebooks, globalConfig.jupyterHome, globalConfig.jupyterPort)
 }
 
 function updateContextMenu(stateText) {
@@ -104,10 +96,7 @@ function updateContextMenu(stateText) {
               nbformat: 4,
               nbformat_minor: 0, // eslint-disable-line camelcase
             }
-            fs.writeFileSync(
-              filepath,
-              JSON.stringify(defaultNotebook, null, '  ')
-            )
+            fs.writeFileSync(filepath, JSON.stringify(defaultNotebook, null, '  '))
             openBrowser([filepath])
           }
         )

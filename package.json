@@ -21,12 +21,12 @@
     "yargs": "^11.0.0"
   },
   "devDependencies": {
-    "ava": "^0.24.0",
+    "ava": "^0.25.0",
     "coveralls": "^3.0.0",
-    "electron": "^1.7.11",
-    "electron-packager": "^10.1.1",
+    "electron": "^1.8.4",
+    "electron-packager": "^11.2.0",
     "npm-run-all": "^4.1.2",
-    "nyc": "^11.4.1",
-    "plist": "^2.1.0"
+    "nyc": "^11.6.0",
+    "plist": "^3.0.1"
   }
 }
