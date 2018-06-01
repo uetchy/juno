@@ -1,9 +1,8 @@
-os:
-  - osx
 language: node_js
 node_js: stable
 after_success:
   - npm run coverage
+  - npm run dist
 notifications:
   email:
     on_success: never
