@@ -1,6 +1,6 @@
 {
   "name": "juno",
-  "version": "0.3.2-beta.1",
+  "version": "0.3.2-beta.2",
   "private": true,
   "description": "Jupyter Notebook stays on macOS menubar.",
   "main": "main.js",
