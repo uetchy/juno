@@ -5,6 +5,12 @@ const fs = require('fs')
 const extend = require('extend')
 const { argv } = require('yargs')
 const { app, dialog, shell, Menu, Tray } = require('electron') // eslint-disable-line import/no-extraneous-dependencies
+const { autoUpdater } = require('electron-updater')
+
+const log = require('electron-log')
+log.transports.file.level = 'debug'
+autoUpdater.logger = log
+autoUpdater.checkForUpdatesAndNotify()
 
 // Global instances
 let tray = null
