@@ -26,6 +26,7 @@
     ],
     "afterPack": "./scripts/post-build-mac.js",
     "publish": [
+      "bintray",
       "github"
     ],
     "mac": {
