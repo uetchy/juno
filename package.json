@@ -12,8 +12,7 @@
     "start": "electron .",
     "test": "mocha",
     "build": "electron-builder --dir",
-    "dist": "electron-builder -p onTag",
-    "coverage": "nyc report --reporter=text-lcov"
+    "dist": "electron-builder"
   },
   "build": {
     "appId": "io.uechi.juno",
