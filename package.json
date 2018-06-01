@@ -1,6 +1,6 @@
 {
   "name": "juno",
-  "version": "0.3.2-beta.0",
+  "version": "0.3.2-beta.1",
   "private": true,
   "description": "Jupyter Notebook stays on macOS menubar.",
   "main": "main.js",
@@ -18,9 +18,16 @@
   "build": {
     "appId": "io.uechi.juno",
     "productName": "Juno",
-    "files": ["**/*", "build/tray*", "!scripts", "!*.md"],
+    "files": [
+      "**/*",
+      "build/tray*",
+      "!scripts",
+      "!*.md"
+    ],
     "afterPack": "./scripts/post-build-mac.js",
-    "publish": ["github"],
+    "publish": [
+      "github"
+    ],
     "mac": {
       "category": "public.app-category.utilities"
     }
