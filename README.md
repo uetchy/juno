@@ -1,4 +1,4 @@
-![Juno](http://uechi-public.s3.amazonaws.com/github/juno/header.png)
+![Juno](http://uechi-public.s3-website-ap-northeast-1.amazonaws.com/github/juno/header.png)
 
 [![GitHub release](https://img.shields.io/github/release/uetchy/juno.svg?maxAge=2592000)](https://github.com/uetchy/juno/releases/latest)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/uetchy/juno/master/LICENSE)
