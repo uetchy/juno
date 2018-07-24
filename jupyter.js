@@ -2,7 +2,7 @@ const { execSync, exec, spawn } = require('child_process')
 const { relative } = require('path')
 
 // Return a process pid which is listening specific port
-function processListening(port) {
+function getProcessId(port) {
   try {
     const pid = execSync(`sleep 0.5 && lsof -ti TCP:${port} -s TCP:LISTEN`)
     return String(pid)
@@ -38,7 +38,7 @@ function openBrowser(notebooks, rootPath, port) {
 // Fetch or launch jupyter and returns their PID
 function getJupyterProcess(command, rootPath, port) {
   // Fetch existing process
-  let pid = processListening(port)
+  let pid = getProcessId(port)
 
   // Launch Jupyter if not existed
   if (!pid) {
@@ -50,7 +50,7 @@ function getJupyterProcess(command, rootPath, port) {
     console.log('jupyter: started')
 
     while (!pid) {
-      pid = processListening(port)
+      pid = getProcessId(port)
     }
   }
 

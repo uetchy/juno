@@ -12,8 +12,7 @@
     "start": "electron .",
     "test": "mocha",
     "build": "electron-builder --dir",
-    "dist": "electron-builder",
-    "release": "release-it --src.tagName='v%s'"
+    "dist": "electron-builder"
   },
   "build": {
     "appId": "io.uechi.juno",
@@ -35,8 +34,7 @@
   },
   "dependencies": {
     "electron-log": "^2.2.14",
-    "electron-updater": "^2.21.10",
-    "extend": "^3.0.1",
+    "electron-updater": "^3.0.3",
     "yargs": "^12.0.0-candidate.0"
   },
   "devDependencies": {

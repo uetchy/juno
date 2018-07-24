@@ -2,24 +2,23 @@ const { homedir } = require('os')
 const { resolve } = require('path')
 const { exec } = require('child_process')
 const fs = require('fs')
-const extend = require('extend')
 const { argv } = require('yargs')
-const { app, dialog, shell, Menu, Tray } = require('electron') // eslint-disable-line import/no-extraneous-dependencies
+const { app, dialog, shell, Menu, Tray } = require('electron')
 const { autoUpdater } = require('electron-updater')
-
 const log = require('electron-log')
-log.transports.file.level = 'debug'
-autoUpdater.logger = log
-autoUpdater.checkForUpdatesAndNotify()
+
+// Our modules
+const jupyter = require('./jupyter')
 
 // Global instances
 let tray = null
 let jupyterPID = null
-let notebooksToOpen = []
+let notebooksQueue = []
 let globalConfig = null
 
-// Our modules
-const jupyter = require('./jupyter')
+log.transports.file.level = 'debug'
+autoUpdater.logger = log
+autoUpdater.checkForUpdatesAndNotify()
 
 // Supress multiple instances
 const shouldQuit = app.makeSingleInstance(args => {
@@ -48,14 +47,14 @@ function loadConfig() {
   let config
   try {
     const userConfig = require(userConfigPath)
-    config = extend(defaultConfig, userConfig)
+    config = Object.assign(defaultConfig, userConfig)
   } catch (err) {
+    config = defaultConfig
     fs.writeFileSync(
       userConfigPath,
-      JSON.stringify(defaultConfig, null, '  '),
+      JSON.stringify(config, null, '  '),
       'utf-8'
     )
-    config = defaultConfig
   }
   return config
 }
@@ -167,7 +166,7 @@ app.on('open-file', (event, path) => {
   if (jupyterPID) {
     openBrowser([path])
   } else {
-    notebooksToOpen.push(path)
+    notebooksQueue.push(path)
   }
 })
 
@@ -188,8 +187,8 @@ app.on('ready', () => {
   updateContextMenu('Preparing to start')
 
   // Gather notebooks
-  const notebooks = notebooksToOpen.concat(argv._)
-  notebooksToOpen = []
+  const notebooks = notebooksQueue.concat(argv._)
+  notebooksQueue = []
 
   // Launch or pick up jupyter daemon and get PID
   jupyterPID = jupyter.getJupyterProcess(
@@ -198,13 +197,13 @@ app.on('ready', () => {
     globalConfig.jupyterPort
   )
 
-  if (jupyterPID == null) {
-    updateContextMenu('Something went wrong. Check your .junorc.json')
-  } else {
+  if (jupyterPID) {
     updateContextMenu(`Running on localhost: ${globalConfig.jupyterPort}`)
     // Open browser to show notebooks
     if (notebooks.length > 0 || globalConfig.openBrowserOnStartup) {
       openBrowser(notebooks)
     }
+  } else {
+    updateContextMenu('Something went wrong. Check your .junorc.json')
   }
 })

@@ -19,5 +19,6 @@ exports.default = function() {
     },
   ]
   fs.writeFileSync(plistPath, plist.build(appPlist))
+
   console.log('Modified bundle types in plist file')
 }

@@ -7,7 +7,7 @@
 [![Build Status](https://travis-ci.org/uetchy/juno.svg?branch=master)](https://travis-ci.org/uetchy/juno)
 [![Twitter](https://img.shields.io/twitter/url/http/github.com/uetchy/juno.svg?style=social)](https://twitter.com/intent/tweet?text=Jupyter%20Notebook%20stays%20on%20macOS%20menubar.&url=https://github.com/uetchy/juno)
 
-Jupyter Notebook stays on macOS menubar. Powered by Electron.
+Jupyter Notebook stays on macOS menubar.
 
 ![](http://uechi-public.s3.amazonaws.com/github/juno/screenshot.png)
 
@@ -15,15 +15,15 @@ Jupyter Notebook stays on macOS menubar. Powered by Electron.
 
 ## Download
 
-See [releases](https://github.com/uetchy/juno/releases) and download the app.
+See [releases](https://github.com/uetchy/juno/releases).
 
 ### Supported platforms
 
-* macOS
+- macOS
 
 ## Requirements
 
-* Jupyter Notebook
+- Jupyter Notebook
 
 ### How to install Jupyter Notebook
 
@@ -37,7 +37,7 @@ $ jupyter notebook
 
 Juno config is located on `~/.junorc.json`.
 
-default parameters are here:
+default parameters are:
 
 ```json
 {
@@ -50,7 +50,7 @@ default parameters are here:
 
 ### JupyterLab
 
-You can also specify `/usr/local/bin/jupyter-lab` to `jupyterCommand` to use
+You can also specify `/usr/local/bin/jupyter-lab` to `jupyterCommand` to utilize
 Jupyter Lab (you may also want to install `jupyterlab` via `pip3 install jupyterlab`.)
 
 ### pyenv
@@ -77,15 +77,14 @@ juno "Untitled.ipynb"
 
 ## Bugs
 
-Feel free to [report issues](https://github.com/uetchy/juno/issues/new) you find
-with Juno.
+Feel free to [report issues](https://github.com/uetchy/juno/issues/new).
 
 ## Roadmap
 
-* [x] Launch Juno in specified directory
-* [x] Terminal integration
-* [x] Test suite
-* [ ] Auto update
+- [x] Launch Juno in specified directory
+- [x] Terminal integration
+- [x] Test suite
+- [x] Auto update
 
 ## Development Installation
 
@@ -96,21 +95,10 @@ $ npm start
 
 ### Test & Build
 
-Just run:
-
-```
-$ npm run release
-```
-
-or:
-
 ```
 $ npm test
 $ npm run build
 ```
-
-Builds the app for OS X, Linux, and Windows, using
-[electron-packager](https://github.com/maxogden/electron-packager).
 
 ## License
 
