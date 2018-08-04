@@ -5,7 +5,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/uetchy/juno.svg)](https://github.com/uetchy/juno/issues)
 [![Join the chat at https://gitter.im/uetchy/juno](https://badges.gitter.im/uetchy/juno.svg)](https://gitter.im/uetchy/juno?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/uetchy/juno.svg?branch=master)](https://travis-ci.org/uetchy/juno)
-[![Twitter](https://img.shields.io/twitter/url/http/github.com/uetchy/juno.svg?style=social)](https://twitter.com/intent/tweet?text=Jupyter%20Notebook%20stays%20on%20macOS%20menubar.&url=https://github.com/uetchy/juno)
+[![Twitter](https://img.shields.io/twitter/url/http/github.com/uetchy/juno.svg?style=social)](https://twitter.com/intent/tweet?text=☄️%20A%20minimal%20app%20serving%20Jupyter%20Notebook%20on%20macOS%20menubar.&url=https://github.com/uetchy/juno)
 
 Jupyter Notebook stays on macOS menubar.
 
