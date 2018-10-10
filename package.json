@@ -33,15 +33,15 @@
     }
   },
   "dependencies": {
-    "electron-log": "^2.2.14",
-    "electron-updater": "^3.0.3",
-    "yargs": "^12.0.0-candidate.0"
+    "electron-log": "^2.2.17",
+    "electron-updater": "^3.1.2",
+    "yargs": "^12.0.2"
   },
   "devDependencies": {
-    "electron": "^2.0.2",
-    "electron-builder": "^20.15.1",
+    "electron": "^3.0.3",
+    "electron-builder": "^20.28.4",
     "mocha": "^5.2.0",
     "plist": "^3.0.1",
-    "spectron": "^3.8.0"
+    "spectron": "^4.0.0"
   }
 }
