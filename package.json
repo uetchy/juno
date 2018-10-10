@@ -7,7 +7,7 @@
   "license": "MIT",
   "repository": "uetchy/juno",
   "author": "Yasuaki Uechi <y@uechi.io>",
-  "electronVersion": "2.0.2",
+  "electronVersion": "3.0.3",
   "scripts": {
     "start": "electron .",
     "test": "mocha",
