@@ -1,18 +1,26 @@
 {
   "name": "juno",
-  "version": "0.3.2-beta.2",
-  "private": true,
   "description": "Jupyter Notebook stays on macOS menubar.",
-  "main": "main.js",
-  "license": "MIT",
-  "repository": "uetchy/juno",
+  "version": "0.3.2-beta.2",
   "author": "Yasuaki Uechi <y@uechi.io>",
-  "electronVersion": "3.0.3",
+  "main": "main.js",
   "scripts": {
-    "start": "electron .",
-    "test": "mocha",
     "build": "electron-builder --dir",
-    "dist": "electron-builder"
+    "dist": "electron-builder",
+    "start": "electron .",
+    "test": "mocha"
+  },
+  "dependencies": {
+    "electron-log": "^2.2.17",
+    "electron-updater": "^4.0.6",
+    "yargs": "^12.0.2"
+  },
+  "devDependencies": {
+    "electron": "^4.0.1",
+    "electron-builder": "^20.28.4",
+    "mocha": "^5.2.0",
+    "plist": "^3.0.1",
+    "spectron": "^5.0.0"
   },
   "build": {
     "appId": "io.uechi.juno",
@@ -30,18 +38,11 @@
     ],
     "mac": {
       "category": "public.app-category.utilities"
-    }
+    },
+    "prune": false
   },
-  "dependencies": {
-    "electron-log": "^2.2.17",
-    "electron-updater": "^3.1.2",
-    "yargs": "^12.0.2"
-  },
-  "devDependencies": {
-    "electron": "^3.0.3",
-    "electron-builder": "^20.28.4",
-    "mocha": "^5.2.0",
-    "plist": "^3.0.1",
-    "spectron": "^4.0.0"
-  }
+  "electronVersion": "4.0.1",
+  "license": "MIT",
+  "private": true,
+  "repository": "uetchy/juno"
 }

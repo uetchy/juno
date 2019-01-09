@@ -20,14 +20,15 @@ log.transports.file.level = 'debug'
 autoUpdater.logger = log
 autoUpdater.checkForUpdatesAndNotify()
 
-// Supress multiple instances
-const shouldQuit = app.makeSingleInstance(args => {
-  const notebooks = args.slice(2)
+app.on('second-instance', (event, commandLine, workingDirectory) => {
+  console.log('second-instance')
+  console.log(commandLine)
+  const notebooks = commandLine.slice(2)
   openBrowser(notebooks)
 })
 
-// Quit if the app instance is secondary one
-if (shouldQuit) {
+const gotTheLock = app.requestSingleInstanceLock()
+if (!gotTheLock) {
   app.quit()
 }
 
