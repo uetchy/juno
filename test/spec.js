@@ -2,10 +2,10 @@ const { Application } = require('spectron')
 const electronPath = require('electron')
 const path = require('path')
 
-describe('Application launch', function() {
+describe('Application launch', () => {
   this.timeout(10000)
 
-  beforeEach(function() {
+  beforeEach(() => {
     this.app = new Application({
       path: electronPath,
       args: [path.join(__dirname, '..')],
@@ -13,7 +13,7 @@ describe('Application launch', function() {
     return this.app.start()
   })
 
-  afterEach(function() {
+  afterEach(() => {
     if (this.app && this.app.isRunning()) {
       return this.app.stop()
     }

@@ -2,7 +2,7 @@ const { join } = require('path')
 const fs = require('fs')
 const plist = require('plist')
 
-exports.default = function() {
+exports.default = () => {
   const plistPath = join(
     __dirname,
     '../dist/mac/Juno.app/Contents',
@@ -18,6 +18,7 @@ exports.default = function() {
       CFBundleTypeRole: 'Editor',
     },
   ]
+
   fs.writeFileSync(plistPath, plist.build(appPlist))
 
   console.log('Modified bundle types in plist file')

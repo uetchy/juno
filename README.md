@@ -28,9 +28,9 @@ See [releases](https://github.com/uetchy/juno/releases).
 ### How to install Jupyter Notebook
 
 ```
-$ brew install python3
-$ pip3 install jupyter
-$ jupyter notebook
+brew install python3
+pip3 install jupyter
+jupyter notebook
 ```
 
 ## Config
@@ -39,12 +39,12 @@ Juno config is located on `~/.junorc.json`.
 
 default parameters are:
 
-```json
+```jsonc
 {
-  "jupyterCommand": "/usr/local/bin/jupyter-notebook",
-  "jupyterPort": 8888,
-  "jupyterHome": "~",
-  "openBrowserOnStartup": true
+  "jupyterCommand": "/usr/local/bin/jupyter-notebook", // executable path for Jupyter Notebook
+  "jupyterPort": 8888, // server port
+  "jupyterHome": "~", // root folder
+  "openBrowserOnStartup": true // set true if let Juno open browser after launch
 }
 ```
 
@@ -89,15 +89,15 @@ Feel free to [report issues](https://github.com/uetchy/juno/issues/new).
 ## Development Installation
 
 ```
-$ npm install
-$ npm start
+npm install
+npm start
 ```
 
 ### Test & Build
 
 ```
-$ npm test
-$ npm run build
+npm test
+npm run build
 ```
 
 ## License
