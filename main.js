@@ -2,7 +2,6 @@ const { homedir } = require('os')
 const { resolve } = require('path')
 const { exec } = require('child_process')
 const fs = require('fs')
-const { argv } = require('yargs')
 const { app, dialog, shell, Menu, Tray } = require('electron')
 const { autoUpdater } = require('electron-updater')
 const log = require('electron-log')
@@ -100,7 +99,7 @@ function updateContextMenu(stateText) {
             title: 'New Notebook',
             defaultPath: resolve(globalConfig.jupyterHome, 'Untitled.ipynb'),
           },
-          filepath => {
+          (filepath) => {
             if (!filepath) {
               return
             }
@@ -188,7 +187,7 @@ app.on('ready', () => {
   updateContextMenu('Preparing to start')
 
   // Gather notebooks
-  const notebooks = notebooksQueue.concat(argv._)
+  const notebooks = notebooksQueue.concat(process.argv.slice(2))
   notebooksQueue = []
 
   // Launch or pick up jupyter daemon and get PID

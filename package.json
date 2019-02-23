@@ -11,14 +11,14 @@
     "test": "mocha"
   },
   "dependencies": {
-    "electron-log": "^2.2.17",
+    "electron-log": "^3.0.1",
     "electron-updater": "^4.0.6",
-    "yargs": "^12.0.2"
+    "yargs": "^13.2.1"
   },
   "devDependencies": {
-    "electron": "^4.0.1",
-    "electron-builder": "^20.28.4",
-    "mocha": "^5.2.0",
+    "electron": "^4.0.5",
+    "electron-builder": "^20.38.5",
+    "mocha": "^6.0.1",
     "plist": "^3.0.1",
     "spectron": "^5.0.0"
   },
@@ -38,10 +38,9 @@
     ],
     "mac": {
       "category": "public.app-category.utilities"
-    },
-    "prune": false
+    }
   },
-  "electronVersion": "4.0.1",
+  "electronVersion": "4.0.5",
   "license": "MIT",
   "private": true,
   "repository": "uetchy/juno"
