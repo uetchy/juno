@@ -1,16 +1,18 @@
 <p align="center">
   <img alt="logo" src="http://uechi-public.s3-website-ap-northeast-1.amazonaws.com/github/juno/header.png" /><br/>
+  <br/>
   <b>Jupyter Notebook stays on macOS menubar.</b>
+  <br/><br/>
 </p>
+
+![](http://uechi-public.s3.amazonaws.com/github/juno/screenshot.png)
+![](http://uechi-public.s3.amazonaws.com/github/juno/open-with-juno.png)
 
 [![GitHub release](https://img.shields.io/github/release/uetchy/juno.svg?maxAge=2592000)](https://github.com/uetchy/juno/releases/latest)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/uetchy/juno/master/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/uetchy/juno.svg)](https://github.com/uetchy/juno/issues)
 [![Join the chat at https://gitter.im/uetchy/juno](https://badges.gitter.im/uetchy/juno.svg)](https://gitter.im/uetchy/juno?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/uetchy/juno.svg?branch=master)](https://travis-ci.org/uetchy/juno)
-
-![](http://uechi-public.s3.amazonaws.com/github/juno/screenshot.png)
-![](http://uechi-public.s3.amazonaws.com/github/juno/open-with-juno.png)
 
 ## Download
 
