@@ -24,13 +24,17 @@ function launchJupyter(command, rootPath, port) {
 }
 
 // Open browser and show notebooks
-function openBrowser(notebooks, rootPath, port) {
+function openBrowser(notebooks, rootPath, port, lab = false) {
   if (notebooks.length === 0) {
-    exec(`open "http://localhost:${port}"`)
+    exec(`open "http://localhost:${port}/${lab ? 'lab' : ''}"`)
   } else {
     notebooks.forEach((notebook) => {
       const target = relative(rootPath, notebook)
-      exec(`open "http://localhost:${port}/notebooks/${target}"`)
+      exec(
+        `open "http://localhost:${port}/${
+          lab ? 'lab/tree' : 'notebooks'
+        }/${target}"`
+      )
     })
   }
 }
