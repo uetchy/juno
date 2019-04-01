@@ -1,16 +1,15 @@
-![Juno](http://uechi-public.s3-website-ap-northeast-1.amazonaws.com/github/juno/header.png)
+<p align="center">
+  <img alt="logo" src="http://uechi-public.s3-website-ap-northeast-1.amazonaws.com/github/juno/header.png" /><br/>
+  <b>Jupyter Notebook stays on macOS menubar.</b>
+</p>
 
 [![GitHub release](https://img.shields.io/github/release/uetchy/juno.svg?maxAge=2592000)](https://github.com/uetchy/juno/releases/latest)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/uetchy/juno/master/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/uetchy/juno.svg)](https://github.com/uetchy/juno/issues)
 [![Join the chat at https://gitter.im/uetchy/juno](https://badges.gitter.im/uetchy/juno.svg)](https://gitter.im/uetchy/juno?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/uetchy/juno.svg?branch=master)](https://travis-ci.org/uetchy/juno)
-[![Twitter](https://img.shields.io/twitter/url/http/github.com/uetchy/juno.svg?style=social)](https://twitter.com/intent/tweet?text=☄️%20A%20minimal%20app%20serving%20Jupyter%20Notebook%20on%20macOS%20menubar.&url=https://github.com/uetchy/juno)
-
-Jupyter Notebook stays on macOS menubar.
 
 ![](http://uechi-public.s3.amazonaws.com/github/juno/screenshot.png)
-
 ![](http://uechi-public.s3.amazonaws.com/github/juno/open-with-juno.png)
 
 ## Download
@@ -44,7 +43,8 @@ default parameters are:
   "jupyterCommand": "/usr/local/bin/jupyter-notebook", // executable path for Jupyter Notebook
   "jupyterPort": 8888, // server port
   "jupyterHome": "~", // root folder
-  "openBrowserOnStartup": true // set true if let Juno open browser after launch
+  "openBrowserOnStartup": true, // set true if let Juno open browser after launch
+  "preferLab": false // open Jupyter Lab instead of Jupyter Notebook
 }
 ```
 
