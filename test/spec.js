@@ -3,8 +3,6 @@ const electronPath = require('electron')
 const path = require('path')
 
 describe('Application launch', () => {
-  this.timeout(10000)
-
   beforeEach(() => {
     this.app = new Application({
       path: electronPath,
@@ -18,4 +16,4 @@ describe('Application launch', () => {
       return this.app.stop()
     }
   })
-})
+}).timeout(10000)
