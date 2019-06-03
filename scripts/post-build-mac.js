@@ -45,5 +45,4 @@ async function documentTypes() {
 
 exports.default = async () => {
   await documentTypes()
-  await notarizeApp()
 }

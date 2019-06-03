@@ -1,7 +1,7 @@
 {
   "name": "juno",
   "description": "Jupyter Notebook stays on macOS menubar.",
-  "version": "0.3.2-beta.2",
+  "version": "0.4.0",
   "author": "Yasuaki Uechi <y@uechi.io>",
   "main": "src/main.js",
   "scripts": {
@@ -37,14 +37,12 @@
     ],
     "afterPack": "./scripts/post-build-mac.js",
     "publish": [
-      "bintray",
       "github"
     ],
     "mac": {
       "category": "public.app-category.utilities"
     }
   },
-  "electronVersion": "4.1.3",
   "license": "MIT",
   "private": true,
   "repository": "uetchy/juno"
