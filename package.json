@@ -32,10 +32,8 @@
       "buildResources": "./src/build"
     },
     "files": [
-      "**/*",
       "src/build/tray*",
-      "!scripts",
-      "!*.md"
+      "src/*.js"
     ],
     "afterPack": "./scripts/after-pack-mac.js",
     "afterSign": "./scripts/after-sign-mac.js",
@@ -44,7 +42,9 @@
     },
     "mac": {
       "category": "public.app-category.utilities",
-      "hardenedRuntime": true
+      "hardenedRuntime": true,
+      "entitlements": "./src/build/entitlements.mac.plist",
+      "entitlementsInherit": "./src/build/entitlements.mac.plist"
     }
   },
   "license": "MIT",
