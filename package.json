@@ -18,8 +18,9 @@
   },
   "devDependencies": {
     "electron": "^5.0.2",
-    "electron-builder": "^20.41.0",
+    "electron-builder": "^20.43.0",
     "electron-notarize": "^0.1.1",
+    "is-ci": "^2.0.0",
     "mocha": "^6.1.4",
     "plist": "^3.0.1",
     "spectron": "^5.0.0"
@@ -36,12 +37,15 @@
       "!scripts",
       "!*.md"
     ],
-    "afterPack": "./scripts/post-build-mac.js",
-    "publish": [
-      "github"
-    ],
+    "afterPack": "./scripts/after-pack-mac.js",
+    "afterSign": "./scripts/after-sign-mac.js",
+    "publish": {
+      "provider": "github",
+      "releaseType": "prerelease"
+    },
     "mac": {
-      "category": "public.app-category.utilities"
+      "category": "public.app-category.utilities",
+      "hardenedRuntime": true
     }
   },
   "license": "MIT",
