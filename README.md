@@ -1,6 +1,6 @@
 <p align="center">
   <img alt="logo" width="200" src="http://uechi-public.s3-website-ap-northeast-1.amazonaws.com/github/juno/header.png" /><br/>
-  <b>Jupyter Notebook stays on macOS menubar.</b><br/><br/>
+  <b>Jupyter Notebook stays on macOS menubar.</b><br/><br/><br/>
   <img alt="demo gif" src="https://uetchy.github.io/juno/assets/demo.gif" />
 </p>
 
