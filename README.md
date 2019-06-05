@@ -1,12 +1,8 @@
 <p align="center">
-  <img alt="logo" src="http://uechi-public.s3-website-ap-northeast-1.amazonaws.com/github/juno/header.png" /><br/>
-  <br/>
-  <b>Jupyter Notebook stays on macOS menubar.</b>
-  <br/><br/>
+  <img alt="logo" width="200" src="http://uechi-public.s3-website-ap-northeast-1.amazonaws.com/github/juno/header.png" /><br/>
+  <b>Jupyter Notebook stays on macOS menubar.</b><br/>
+  <img alt="demo gif" src="https://uetchy.github.io/juno/assets/demo.gif" />
 </p>
-
-![](http://uechi-public.s3.amazonaws.com/github/juno/screenshot.png)
-![](http://uechi-public.s3.amazonaws.com/github/juno/open-with-juno.png)
 
 [![GitHub release](https://img.shields.io/github/release/uetchy/juno.svg?maxAge=2592000)](https://github.com/uetchy/juno/releases/latest)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/uetchy/juno/master/LICENSE)
@@ -87,6 +83,11 @@ Feel free to [report issues](https://github.com/uetchy/juno/issues/new).
 - [x] Terminal integration
 - [x] Test suite
 - [x] Auto update
+
+## Screenshots
+
+![](http://uechi-public.s3.amazonaws.com/github/juno/screenshot.png)
+![](http://uechi-public.s3.amazonaws.com/github/juno/open-with-juno.png)
 
 ## Development Installation
 
