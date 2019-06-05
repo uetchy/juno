@@ -7,7 +7,7 @@
   "scripts": {
     "build": "electron-builder --dir",
     "dist": "electron-builder",
-    "release": "electron-builder",
+    "release": "RELEASE=true electron-builder",
     "start": "electron .",
     "test": "mocha"
   },
@@ -40,8 +40,7 @@
     "afterPack": "./scripts/after-pack-mac.js",
     "afterSign": "./scripts/after-sign-mac.js",
     "publish": {
-      "provider": "github",
-      "releaseType": "prerelease"
+      "provider": "github"
     },
     "mac": {
       "category": "public.app-category.utilities",

@@ -9,6 +9,7 @@ const configPath = path.resolve(__dirname, '../package.json')
 const appPath = path.resolve(__dirname, '../dist/mac/Juno.app')
 const config = require(configPath)
 const appBundleId = config.build.appId
+const isRelease = !!process.env.RELEASE
 
 async function notarizeApp() {
   console.log(`afterSign: Notarizing ${appBundleId} in ${appPath}`)
@@ -23,5 +24,7 @@ async function notarizeApp() {
 }
 
 exports.default = async () => {
-  await notarizeApp()
+  if (isRelease) {
+    await notarizeApp()
+  }
 }
