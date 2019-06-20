@@ -8,7 +8,7 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/uetchy/juno/master/LICENSE)
 [![GitHub issues](https://img.shields.io/github/issues/uetchy/juno.svg)](https://github.com/uetchy/juno/issues)
 [![Join the chat at https://gitter.im/uetchy/juno](https://badges.gitter.im/uetchy/juno.svg)](https://gitter.im/uetchy/juno?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://travis-ci.org/uetchy/juno.svg?branch=master)](https://travis-ci.org/uetchy/juno)
+[![Build Status](https://travis-ci.com/uetchy/juno.svg?branch=master)](https://travis-ci.com/uetchy/juno)
 
 ## Download
 
