@@ -12,18 +12,18 @@
     "test": "mocha"
   },
   "dependencies": {
-    "electron-log": "^3.0.6",
-    "electron-updater": "^4.0.6",
-    "yargs": "^13.2.4"
+    "electron-log": "^3.0.7",
+    "electron-updater": "^4.1.2",
+    "yargs": "^13.3.0"
   },
   "devDependencies": {
-    "electron": "^5.0.3",
-    "electron-builder": "^20.43.0",
+    "electron": "^6.0.0",
+    "electron-builder": "^21.2.0",
     "electron-notarize": "^0.1.1",
     "is-ci": "^2.0.0",
-    "mocha": "^6.1.4",
+    "mocha": "^6.2.0",
     "plist": "^3.0.1",
-    "spectron": "^5.0.0"
+    "spectron": "^7.0.0"
   },
   "build": {
     "appId": "io.uechi.juno",
