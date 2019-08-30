@@ -28,7 +28,7 @@ const defaultConfig = {
   jupyterPort: 8888,
   jupyterHome: homedir(),
   openBrowserOnStartup: true,
-  preferLab: true,
+  preferLab: false,
 }
 const userConfigPath = resolve(homedir(), '.junorc.json')
 const nbConfigPath = resolve(homedir(), '.jupyter/nbconfig', 'notebook.json')
@@ -48,13 +48,17 @@ function loadConfig(configPath, defaultConfig) {
   let config = defaultConfig
   try {
     const userConfig = JSON.parse(fs.readFileSync(configPath))
-    config = { ...config, userConfig }
+    config = { ...config, ...userConfig }
   } catch (err) {
-    fs.writeFileSync(
-      configPath,
-      JSON.stringify(defaultConfig, null, '  '),
-      'utf-8'
-    )
+    if (err.code === 'ENOENT') {
+      fs.writeFileSync(
+        configPath,
+        JSON.stringify(defaultConfig, null, '  '),
+        'utf-8'
+      )
+    } else {
+      throw err
+    }
   }
   return config
 }

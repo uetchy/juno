@@ -14,16 +14,16 @@
   "dependencies": {
     "electron-log": "^3.0.7",
     "electron-updater": "^4.1.2",
-    "yargs": "^13.3.0"
+    "yargs": "^14.0.0"
   },
   "devDependencies": {
-    "electron": "^6.0.0",
+    "electron": "^6.0.6",
     "electron-builder": "^21.2.0",
     "electron-notarize": "^0.1.1",
     "is-ci": "^2.0.0",
     "mocha": "^6.2.0",
     "plist": "^3.0.1",
-    "spectron": "^7.0.0"
+    "spectron": "^8.0.0"
   },
   "build": {
     "appId": "io.uechi.juno",
