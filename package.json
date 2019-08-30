@@ -1,7 +1,7 @@
 {
   "name": "juno",
   "description": "Jupyter Notebook stays on macOS menubar.",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "author": "Yasuaki Uechi <y@uechi.io>",
   "main": "src/main.js",
   "scripts": {
