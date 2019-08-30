@@ -1,6 +1,22 @@
 const path = require('path')
 const fs = require('fs')
-const plist = require('plist')
+const bplist = require('bplist')
+
+function loadPlist(plistPath) {
+  return new Promise((resolve, reject) => {
+    bplist.parseFile(plistPath, (err, object) => {
+      if (err) {
+        return reject(err)
+      }
+      resolve(object[0])
+    })
+  })
+}
+
+function writePlist(plistPath, obj) {
+  const plistBuf = bplist.create(obj)
+  fs.writeFileSync(plistPath, plistBuf)
+}
 
 async function documentTypes() {
   const plistPath = path.resolve(
@@ -8,7 +24,7 @@ async function documentTypes() {
     '../dist/mac/Juno.app/Contents',
     'Info.plist'
   )
-  const appPlist = plist.parse(fs.readFileSync(plistPath).toString())
+  const appPlist = await loadPlist(plistPath)
 
   appPlist.CFBundleDocumentTypes = [
     {
@@ -19,7 +35,7 @@ async function documentTypes() {
     },
   ]
 
-  fs.writeFileSync(plistPath, plist.build(appPlist))
+  writePlist(plistPath, appPlist)
 
   console.log('afterPack: Modified bundle types in plist file')
 }
