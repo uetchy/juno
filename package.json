@@ -8,6 +8,7 @@
     "build": "electron-builder --dir",
     "dist": "electron-builder",
     "release": "RELEASE=true electron-builder",
+    "ship": "yarn release",
     "start": "electron .",
     "test": "mocha"
   },
