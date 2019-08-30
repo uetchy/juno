@@ -1,4 +1,5 @@
 const path = require('path')
+const assert = require('assert')
 const { notarize } = require('electron-notarize')
 
 const appleId = process.env.APPLE_ID
@@ -25,6 +26,9 @@ async function notarizeApp() {
 
 exports.default = async () => {
   if (isRelease) {
+    assert(appleId, 'Specify APPLE_ID for notarization')
+    assert(appleIdPassword, 'Specify APPLE_PASSWORD for notarization')
+    assert(ascProvider, 'Specify ASC_PROVIDER for notarization')
     await notarizeApp()
   }
 }
