@@ -1,25 +1,25 @@
-const { homedir } = require('os')
-const { resolve } = require('path')
-const { exec } = require('child_process')
-const fs = require('fs')
-const { app, dialog, shell, Menu, Tray } = require('electron')
-const { autoUpdater } = require('electron-updater')
-const log = require('electron-log')
-const jupyter = require('./jupyter')
+const {homedir} = require('os');
+const {resolve} = require('path');
+const {exec} = require('child_process');
+const fs = require('fs');
+const {app, dialog, shell, Menu, Tray} = require('electron');
+const {autoUpdater} = require('electron-updater');
+const log = require('electron-log');
+const jupyter = require('./jupyter');
 
 // Global instances
-let tray = null
-let jupyterPID = null
-let notebooksQueue = []
-let globalConfig = null
+let tray = null;
+let jupyterPID = null;
+let notebooksQueue = [];
+let globalConfig = null;
 
-log.transports.file.level = 'debug'
-autoUpdater.logger = log
-autoUpdater.checkForUpdatesAndNotify()
+log.transports.file.level = 'debug';
+autoUpdater.logger = log;
+autoUpdater.checkForUpdatesAndNotify();
 
-const gotTheLock = app.requestSingleInstanceLock()
+const gotTheLock = app.requestSingleInstanceLock();
 if (!gotTheLock) {
-  app.quit()
+  app.quit();
 }
 
 // Global constants
@@ -29,38 +29,38 @@ const defaultConfig = {
   jupyterHome: homedir(),
   openBrowserOnStartup: true,
   preferLab: false,
-}
-const userConfigPath = resolve(homedir(), '.junorc.json')
-const nbConfigPath = resolve(homedir(), '.jupyter/nbconfig', 'notebook.json')
+};
+const userConfigPath = resolve(homedir(), '.junorc.json');
+const nbConfigPath = resolve(homedir(), '.jupyter/nbconfig', 'notebook.json');
 
 // Load config
-globalConfig = loadConfig(userConfigPath, defaultConfig)
+globalConfig = loadConfig(userConfigPath, defaultConfig);
 
 app.on('second-instance', (event, commandLine, workingDirectory) => {
-  console.log('second-instance')
-  console.log(commandLine)
-  const notebooks = commandLine.slice(2)
-  openBrowser(notebooks)
-})
+  console.log('second-instance');
+  console.log(commandLine);
+  const notebooks = commandLine.slice(2);
+  openBrowser(notebooks);
+});
 
 // Load config and merge to default config
 function loadConfig(configPath, defaultConfig) {
-  let config = defaultConfig
+  let config = defaultConfig;
   try {
-    const userConfig = JSON.parse(fs.readFileSync(configPath))
-    config = { ...config, ...userConfig }
+    const userConfig = JSON.parse(fs.readFileSync(configPath));
+    config = {...config, ...userConfig};
   } catch (err) {
     if (err.code === 'ENOENT') {
       fs.writeFileSync(
         configPath,
         JSON.stringify(defaultConfig, null, '  '),
-        'utf-8'
-      )
+        'utf-8',
+      );
     } else {
-      throw err
+      throw err;
     }
   }
-  return config
+  return config;
 }
 
 // Open browser and show notebooks
@@ -69,8 +69,8 @@ function openBrowser(notebooks, lab) {
     notebooks,
     globalConfig.jupyterHome,
     globalConfig.jupyterPort,
-    lab || globalConfig.preferLab
-  )
+    lab || globalConfig.preferLab,
+  );
 }
 
 function openSaveDialog() {
@@ -81,24 +81,24 @@ function openSaveDialog() {
     },
     (filepath) => {
       if (!filepath) {
-        return
+        return;
       }
       const defaultNotebook = {
         cells: [],
         metadata: {},
         nbformat: 4,
         nbformat_minor: 0, // eslint-disable-line camelcase
-      }
-      fs.writeFileSync(filepath, JSON.stringify(defaultNotebook, null, '  '))
-      openBrowser([filepath])
-    }
-  )
+      };
+      fs.writeFileSync(filepath, JSON.stringify(defaultNotebook, null, '  '));
+      openBrowser([filepath]);
+    },
+  );
 }
 
 function updateContextMenu(stateText) {
   const SEPARATOR = {
     type: 'separator',
-  }
+  };
   const contextMenu = Menu.buildFromTemplate([
     {
       label: stateText,
@@ -147,56 +147,56 @@ function updateContextMenu(stateText) {
       role: 'quit',
       accelerator: 'Command+Q',
     },
-  ])
-  tray.setToolTip(stateText)
-  tray.setContextMenu(contextMenu)
+  ]);
+  tray.setToolTip(stateText);
+  tray.setContextMenu(contextMenu);
 }
 
 // Open browser when files are passed
 app.on('open-file', (event, path) => {
-  console.log('open-file', path)
-  event.preventDefault()
+  console.log('open-file', path);
+  event.preventDefault();
   if (jupyterPID) {
-    openBrowser([path])
+    openBrowser([path]);
   } else {
-    notebooksQueue.push(path)
+    notebooksQueue.push(path);
   }
-})
+});
 
 // Kill jupyter daemon when quitting
 app.on('before-quit', () => {
-  process.kill(jupyterPID, 'SIGHUP')
-})
+  process.kill(jupyterPID, 'SIGHUP');
+});
 
 // Initialize app
 app.on('ready', () => {
-  console.log('ready')
+  console.log('ready');
   // Hide dock icon
   if (app.dock) {
-    app.dock.hide()
+    app.dock.hide();
   }
 
-  tray = new Tray(`${__dirname}/build/tray@2x.png`)
-  updateContextMenu('Starting Jupyter instance')
+  tray = new Tray(`${__dirname}/build/tray@2x.png`);
+  updateContextMenu('Starting Jupyter instance');
 
   // Gather notebooks
-  const notebooks = notebooksQueue.concat(process.argv.slice(2))
-  notebooksQueue = []
+  const notebooks = notebooksQueue.concat(process.argv.slice(2));
+  notebooksQueue = [];
 
   // Launch or pick up jupyter daemon and get PID
   jupyterPID = jupyter.getJupyterProcess(
     globalConfig.jupyterCommand,
     globalConfig.jupyterHome,
-    globalConfig.jupyterPort
-  )
+    globalConfig.jupyterPort,
+  );
 
   if (jupyterPID) {
-    updateContextMenu(`Running on localhost:${globalConfig.jupyterPort}`)
+    updateContextMenu(`Running on localhost:${globalConfig.jupyterPort}`);
     // Open browser to show notebooks
     if (notebooks.length > 0 || globalConfig.openBrowserOnStartup) {
-      openBrowser(notebooks)
+      openBrowser(notebooks);
     }
   } else {
-    updateContextMenu('Something went wrong. Check your .junorc.json')
+    updateContextMenu('Something went wrong. Check your .junorc.json');
   }
-})
+});
