@@ -2,8 +2,8 @@ const path = require('path');
 const assert = require('assert');
 const {notarize} = require('electron-notarize');
 
-const appleId = process.env.APPLE_ID;
-const appleIdPassword = process.env.APPLE_PASSWORD;
+const appleApiKey = process.env.APPLE_API_KEY;
+const appleApiIssuer = process.env.APPLE_API_ISSUER;
 const ascProvider = process.env.ASC_PROVIDER;
 
 const configPath = path.resolve(__dirname, '../package.json');
@@ -17,18 +17,18 @@ async function notarizeApp() {
   await notarize({
     appBundleId,
     appPath,
-    appleId,
-    appleIdPassword,
-    ascProvider,
+    // ascProvider,
+    appleApiKey,
+    appleApiIssuer,
   });
   console.log('afterSign: Notarized');
 }
 
 exports.default = async () => {
   if (isRelease) {
-    assert(appleId, 'Specify APPLE_ID for notarization');
-    assert(appleIdPassword, 'Specify APPLE_PASSWORD for notarization');
-    assert(ascProvider, 'Specify ASC_PROVIDER for notarization');
+    assert(appleApiKey);
+    assert(appleApiIssuer);
+    assert(ascProvider);
     await notarizeApp();
   }
 };

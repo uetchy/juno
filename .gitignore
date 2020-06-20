@@ -1,5 +1,6 @@
-/.vscode/
-/dist/
+/private_keys
+/.vscode
+/dist
 *.ipynb
 
 # Created by https://www.gitignore.io/api/node

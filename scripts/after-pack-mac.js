@@ -18,7 +18,6 @@ async function documentTypes() {
     'Info.plist',
   );
   const appPlist = loadPlist(plistPath);
-  console.log(appPlist);
 
   appPlist.CFBundleDocumentTypes = [
     {
