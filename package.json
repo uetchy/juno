@@ -20,7 +20,7 @@
     "electron-notarize": "^1.0.0",
     "is-ci": "^2.0.0",
     "mocha": "^8.0.1",
-    "plist": "^3.0.1",
+    "plist": "^3.0.4",
     "spectron": "^11.0.0"
   },
   "main": "src/main.js",
